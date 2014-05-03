@@ -17,7 +17,33 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
+
+function generateReadme () {
+    var pack = require ("./package")
+      , content = ""
+      ;
+
+    // title
+    content += pack.name + "\n";
+    for (var i = 0; i < pack.name.length; ++i) {
+        content += "=";
+    }
+
+    content += "\n";
+
+    // description
+    content += pack.description + "\n\n";
+
+    // license
+    content += "## License\n"
+    content += "See the [LICENSE](./LICENSE) file.\n"
+
+    return content;
+}
+
+
 var options = {
+    // options
     "version": {
         run: function () {
             console.log("Blah v" + require ("./package").version)
@@ -29,6 +55,17 @@ var options = {
             console.log (HELP);
         },
         aliases: ["-h", "--help", "--h", "-help"]
+    }
+
+    // actions
+  , "readme": {
+        run: function () {
+            require ("fs").writeFileSync (
+                "./README.md"
+              , generateReadme()
+            )
+        },
+        aliases: ["readme"]
     }
 };
 
