@@ -17,17 +17,28 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
-// dependencies
-var Yargs = require('yargs').usage(HELP)
-  , argv = Yargs.argv
-  ;
+var options = {
+    "version": {
+        run: function () {
+            console.log("Blah v" + require ("./package").version)
+        },
+        aliases: ["-v", "--version", "--v", "-version"]
+    }
+  , "help": {
+        run: function () {
+            console.log (HELP);
+        },
+        aliases: ["-h", "--help", "--h", "-help"]
+    }
+};
 
-// show version
-if (argv.v || argv.version) {
-    return console.log("Blah v" + require ("./package").version);
-}
-
-// show help
-if (argv.help) {
-    return console.log(Yargs.help());
+for (var i = 2; i < process.argv.length; ++i) {
+    var cArg = process.argv[i];
+    for (var op in options) {
+        var cOp = options[op];
+        if (cOp.aliases.indexOf (cArg) !== -1) {
+            cOp.run();
+            break;
+        }
+    }
 }
