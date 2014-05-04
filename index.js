@@ -17,9 +17,13 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
-
+/**
+ *  Generate readme
+ *
+ */
 function generateReadme () {
 
+    // get the package.json and init content
     var pack = require (process.env.PWD + "/package")
       , content = ""
       ;
@@ -42,6 +46,10 @@ function generateReadme () {
     return content;
 }
 
+/**
+ *  Generate gitignore
+ *
+ */
 function generateGitignore () {
 
     var pack = require (process.env.PWD + "/package")
@@ -55,6 +63,10 @@ function generateGitignore () {
     return content;
 }
 
+/**
+ *  Generate license
+ *
+ */
 function generateLicense (licenseName) {
 
     var fullName = null
@@ -70,6 +82,7 @@ function generateLicense (licenseName) {
             var cLine = gitconfigLines[i].trim();
             if (/^name/.test(cLine)) {
                 fullName = cLine.split("=")[1].trim();
+                break;
             }
         }
     } catch (e) {
