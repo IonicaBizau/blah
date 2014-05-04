@@ -131,7 +131,7 @@ var options = {
               , generateLicense (process.argv[3])
             )
         },
-        aliases: ["gitignore"]
+        aliases: ["license"]
     }
 };
 
