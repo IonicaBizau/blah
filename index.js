@@ -62,7 +62,6 @@ function generateLicense (licenseName) {
       ;
 
     try {
-    debugger;
         var gitconfigLines = require ("fs").readFileSync(
             require('path-extra').homedir() + "/.gitconfig"
         ).toString().replace(/\t/g, "").split("\n");
@@ -81,14 +80,18 @@ function generateLicense (licenseName) {
         fullName = "[fullname]";
     }
 
-    return
-        require ("fs")
-            .readFileSync ("./licenses/" + licenseName.toLowerCase() + ".txt")
-            .toString ()
+    var content = require ("fs")
+                    .readFileSync ("./licenses/" + licenseName.toLowerCase() + ".txt")
+                    .toString ()
+                    ;
+
+    content = content
             .replace ("[year]", new Date().getFullYear())
             .replace ("[fullname]", fullName)
             .replace ("[description]", pack.description)
             ;
+
+    return content;
 }
 
 var options = {
