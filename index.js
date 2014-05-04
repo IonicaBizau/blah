@@ -41,6 +41,16 @@ function generateReadme () {
     return content;
 }
 
+function generateGitignore () {
+    var content =
+        "*.swp\n" +
+        "*~\n" +
+        "*.log\n" +
+        "node_modules";
+
+    return content;
+}
+
 
 var options = {
     // options
@@ -66,6 +76,15 @@ var options = {
             )
         },
         aliases: ["readme"]
+    }
+  , "gitignore": {
+        run: function () {
+            require ("fs").writeFileSync (
+                "./.gitignore"
+              , generateGitignore()
+            )
+        },
+        aliases: ["gitignore"]
     }
 };
 
