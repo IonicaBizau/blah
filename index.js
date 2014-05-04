@@ -55,6 +55,7 @@ function generateGitignore () {
     var pack = require (process.env.PWD + "/package")
       , content =
         "*.swp\n" +
+        "*.swo\n" +
         "*~\n" +
         "*.log\n" +
         "node_modules"
