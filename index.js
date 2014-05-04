@@ -19,7 +19,8 @@ const HELP =
 
 
 function generateReadme () {
-    var pack = require ("./package")
+
+    var pack = require (process.env.PWD + "/package")
       , content = ""
       ;
 
@@ -42,15 +43,52 @@ function generateReadme () {
 }
 
 function generateGitignore () {
-    var content =
+
+    var pack = require (process.env.PWD + "/package")
+      , content =
         "*.swp\n" +
         "*~\n" +
         "*.log\n" +
-        "node_modules";
+        "node_modules"
+      ;
 
     return content;
 }
 
+function generateLicense (licenseName) {
+
+    var fullName = null
+      , pack = require (process.env.PWD + "/package")
+      ;
+
+    try {
+        var gitconfigLines = require ("fs").readFileSync(
+            require('path-extra').homedir() + "/.gitconfig"
+        ).toString().replace(/\t/g, "").split("\n");
+
+        for (var i = 0; i < gitconfigLines; ++i) {
+            var cLine = gitconfigLines[i].trim();
+            if (/^name/.test(cLine)) {
+                fullName = cLine.split("=")[1].trim();
+            }
+        }
+    } catch (e) {
+    }
+
+    if (!fullName) {
+        console.log("No fullname found in .gitconfig. Please modify LICENSE [fullname] manually");
+        fullName = "[fullname]";
+    }
+
+    return
+        require ("fs")
+            .readFileSync ("./licenses/" + filename.toLowerCase() + ".txt")
+            .toString ()
+            .replace ("[year]", new Date().getFullYear())
+            .replace ("[fullname]", fullName)
+            .replace ("[description]", pack.description)
+            ;
+}
 
 var options = {
     // options
@@ -82,6 +120,15 @@ var options = {
             require ("fs").writeFileSync (
                 "./.gitignore"
               , generateGitignore()
+            )
+        },
+        aliases: ["gitignore"]
+    }
+  , "license": {
+        run: function () {
+            require ("fs").writeFileSync (
+                "./LICENSE"
+              , generateLicense (process.argv[3])
             )
         },
         aliases: ["gitignore"]
