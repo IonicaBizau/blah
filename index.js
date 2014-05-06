@@ -17,14 +17,28 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
+
 /**
- *  Generate readme
+ * getPackage
+ * Returns the parsed content of package.json
  *
+ * @return string representing the content of package.json file
+ * found in the current directory
+ */
+function getPackage () {
+    return require (process.env.PWD + "/package");
+}
+
+
+/**
+ * generateReadme
+ * Returns a string representing the readme content of the project.
+ *
+ * @return: string representing the content of README.md file
  */
 function generateReadme () {
 
-    // get the package.json and init content
-    var pack = require (process.env.PWD + "/package")
+    var pack = getPackage ()
       , content = ""
       ;
 
@@ -47,12 +61,14 @@ function generateReadme () {
 }
 
 /**
- *  Generate gitignore
+ * generateGitignore
+ * Returns the content of .gitignore file
  *
+ * @return: string representing the content of .gitignore file
  */
 function generateGitignore () {
 
-    var pack = require (process.env.PWD + "/package")
+    var pack = getPackage ()
       , content =
         "*.swp\n" +
         "*.swo\n" +
@@ -65,8 +81,11 @@ function generateGitignore () {
 }
 
 /**
- *  Generate license
+ * generateLicense
+ * Returns the content of the LICENSE by providing the @licenseName
  *
+ * @param licenseName: the license name
+ * @return string representing the LICENSE content
  */
 function generateLicense (licenseName) {
 
@@ -94,20 +113,20 @@ function generateLicense (licenseName) {
         fullName = "[fullname]";
     }
 
-    var content = require ("fs")
-                    .readFileSync ("./licenses/" + licenseName.toLowerCase() + ".txt")
-                    .toString ()
-                    ;
 
-    content = content
-            .replace ("[year]", new Date().getFullYear())
-            .replace ("[fullname]", fullName)
-            .replace ("[description]", pack.description)
-            ;
-
-    return content;
+    return require ("fs")
+        .readFileSync ("./licenses/" + licenseName.toLowerCase() + ".txt")
+        .toString ()
+        .replace ("[year]", new Date().getFullYear())
+        .replace ("[fullname]", fullName)
+        .replace ("[description]", pack.description)
+        ;
 }
 
+/**
+ * Available options and actions
+ *
+ */
 var options = {
     // options
     "version": {
@@ -153,6 +172,7 @@ var options = {
     }
 };
 
+// parse process.argv and run the needed action
 for (var i = 2; i < process.argv.length; ++i) {
     var cArg = process.argv[i];
     for (var op in options) {
