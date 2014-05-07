@@ -68,8 +68,7 @@ function generateReadme () {
  */
 function generateGitignore () {
 
-    var pack = getPackage ()
-      , content =
+    var content =
         "*.swp\n" +
         "*.swo\n" +
         "*~\n" +
@@ -179,7 +178,7 @@ for (var i = 2; i < process.argv.length; ++i) {
         var cOp = options[op];
         if (cOp.aliases.indexOf (cArg) !== -1) {
             cOp.run();
-            break;
+            process.exit (0);
         }
     }
 }
