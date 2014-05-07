@@ -184,4 +184,10 @@ for (var i = 2; i < process.argv.length; ++i) {
     }
 }
 
-console.error ("Invalid option or action:", process.argv.slice (2).join(", "));
+// no actions
+if (process.argv.length === 2) {
+    console.error ("No action/option provided. Run blah --help for more information");
+    process.exit (1);
+}
+
+console.error ("Invalid option or action: " + process.argv.slice (2).join(", "));
