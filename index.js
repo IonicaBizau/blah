@@ -114,7 +114,7 @@ function generateLicense (licenseName) {
 
 
     return require ("fs")
-        .readFileSync ("./licenses/" + licenseName.toLowerCase() + ".txt")
+        .readFileSync (__dirname + "/licenses/" + licenseName.toLowerCase() + ".txt")
         .toString ()
         .replace ("[year]", new Date().getFullYear())
         .replace ("[fullname]", fullName)
