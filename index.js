@@ -183,3 +183,5 @@ for (var i = 2; i < process.argv.length; ++i) {
         }
     }
 }
+
+console.error ("Invalid option or action:", process.argv.slice (2).join(", "));
