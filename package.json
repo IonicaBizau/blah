@@ -2,7 +2,7 @@
   "name": "blah",
   "version": "0.0.4",
   "description": "Blah version. Blah gitignore. Blah README. Boring. You need blah.",
-  "main": "index.js",
+  "main": "blah.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,7 @@
     "url": "git@github.com:IonicaBizau/node-blah.git"
   },
   "bin": {
-    "blah": "./index.js"
+    "blah": "./blah.js"
   },
   "keywords": [
     "blah",
