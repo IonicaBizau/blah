@@ -127,7 +127,8 @@ function generateLicense (licenseName) {
  *
  */
 var options = {
-    // options
+
+    // Options
     "version": {
         run: function () {
             console.log("Blah v" + require ("./package").version)
@@ -141,7 +142,7 @@ var options = {
         aliases: ["-h", "--help", "--h", "-help"]
     }
 
-    // actions
+    // Actions
   , "readme": {
         run: function () {
             require ("fs").writeFileSync (
@@ -171,7 +172,7 @@ var options = {
     }
 };
 
-// parse process.argv and run the needed action
+// Parse process.argv and run the needed action
 for (var i = 2; i < process.argv.length; ++i) {
     var cArg = process.argv[i];
     for (var op in options) {
@@ -183,10 +184,11 @@ for (var i = 2; i < process.argv.length; ++i) {
     }
 }
 
-// no actions
+// No actions, no fun
 if (process.argv.length === 2) {
     console.error ("No action/option provided. Run blah --help for more information");
     process.exit (1);
 }
 
+// Invalid option/action
 console.error ("Invalid option or action: " + process.argv.slice (2).join(", "));
