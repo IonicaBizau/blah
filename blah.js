@@ -39,23 +39,15 @@ function getPackage () {
 function generateReadme () {
 
     var pack = getPackage ()
-      , content = ""
+      , Fs = require("fs")
+      , JxUtils = require("jxutils")
+      , flattenPack = JxUtils.flattenObject(pack)
+      , content = Fs.readFileSync(__dirname + "/templates/README.md").toString();
       ;
 
-    // title
-    content += pack.name + "\n";
-    for (var i = 0; i < pack.name.length; ++i) {
-        content += "=";
+    for (var key in flattenPack) {
+        content = content.replace(new RegExp("{" + key + "+}", "g"), flattenPack[key]);
     }
-
-    content += "\n";
-
-    // description
-    content += pack.description + "\n\n";
-
-    // license
-    content += "## License\n"
-    content += "See the [LICENSE](./LICENSE) file.\n"
 
     return content;
 }
