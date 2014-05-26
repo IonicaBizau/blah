@@ -104,10 +104,10 @@ function generateLicense (licenseName) {
         fullName = "[fullname]";
     }
 
-
     return require ("fs")
         .readFileSync (__dirname + "/templates/licenses/" + licenseName.toLowerCase() + ".txt")
         .toString ()
+        .replace ("[project]", pack.name)
         .replace ("[year]", new Date().getFullYear())
         .replace ("[fullname]", fullName)
         .replace ("[description]", pack.description)
@@ -124,14 +124,14 @@ var options = {
     "version": {
         run: function () {
             console.log("Blah v" + require ("./package").version)
-        },
-        aliases: ["-v", "--version", "--v", "-version"]
+        }
+      , aliases: ["-v", "--version", "--v", "-version"]
     }
   , "help": {
         run: function () {
             console.log (HELP);
-        },
-        aliases: ["-h", "--help", "--h", "-help"]
+        }
+      , aliases: ["-h", "--help", "--h", "-help"]
     }
 
     // Actions
@@ -141,8 +141,8 @@ var options = {
                 "./README.md"
               , generateReadme()
             )
-        },
-        aliases: ["readme"]
+        }
+      , aliases: ["readme"]
     }
   , "gitignore": {
         run: function () {
@@ -150,8 +150,8 @@ var options = {
                 "./.gitignore"
               , generateGitignore()
             )
-        },
-        aliases: ["gitignore"]
+        }
+      , aliases: ["gitignore"]
     }
   , "license": {
         run: function () {
@@ -159,8 +159,8 @@ var options = {
                 "./LICENSE"
               , generateLicense (process.argv[3])
             )
-        },
-        aliases: ["license"]
+        }
+      , aliases: ["license"]
     }
 };
 
