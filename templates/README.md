@@ -4,6 +4,9 @@
 ## Installation
 Run the following commands to download and install the application:
 
+## Documentation
+{documentation}
+
 ```sh
 $ {repository.type} clone {repository.url} {name}
 $ cd {name}

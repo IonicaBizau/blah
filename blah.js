@@ -40,16 +40,33 @@ function generateReadme () {
 
     var pack = getPackage ()
       , Fs = require("fs")
+      , Path = require("path")
       , JxUtils = require("jxutils")
       , flattenPack = JxUtils.flattenObject(pack)
       , content = Fs.readFileSync(__dirname + "/templates/README.md").toString();
+      , MarkDox = require("markdox")
+      , Parser = require("dox-parser")
+      , markdoxOps = {
+            output: function () {
+                console.log(arguments);
+            }
+          , formatter: MarkDox
+          , compiler: function (filepath, data) {
+                return myCustomCompiler(data);
+            }
+          , template: Path.resolve(__dirname + "/markdox-res/template.ejs")
+        }
       ;
 
-    for (var key in flattenPack) {
-        content = content.replace(new RegExp("{" + key + "+}", "g"), flattenPack[key]);
-    }
+    MarkDox.process(Parser, options, function () {
+         console.log('File `all.md` generated with success');
 
-    return content;
+        for (var key in flattenPack) {
+            content = content.replace(new RegExp("{" + key + "+}", "g"), flattenPack[key]);
+        }
+
+        return content;
+    });
 }
 
 /**
@@ -115,6 +132,39 @@ function generateLicense (licenseName) {
 }
 
 /**
+ * generateDocs
+ *
+ * @name generateDocs
+ * @function
+ * @param {String} fileName The input JavaScript file'
+ * @return {String} The generated docs
+ */
+function generateDocs (fileName) {
+    var content = require("fs").readFileSync(require("path").resolve(fileName)).toString().split("\n");
+    var docs = "";
+    for (var i = 0, parsing = false, k = -1; i < content; ++i) {
+        var cLine = content[i];
+        if (cLine.indexOf("/**") !== -1 && !parsing) {
+            parsing = true;
+        }
+
+        var cDoc = {};
+
+        if (parsing) {
+            docs += ([
+                // name
+                function () { cDoc.name = cLine.replace("*", "").trim(); }
+                // empty line
+              , undefined
+                // name
+              , function () { return cLine.replace("*", "").trim() }
+            ][++k] || function () {})()
+        }
+    }
+
+}
+
+/**
  * Available options and actions
  *
  */
@@ -161,6 +211,15 @@ var options = {
             )
         }
       , aliases: ["license"]
+    }
+  , "docs": {
+        run: function () {
+            require ("fs").writeFileSync (
+                "./docs.md"
+              , generateDocs (process.argv[3])
+            )
+        }
+      , aliases: ["docs"]
     }
 };
 
