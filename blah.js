@@ -58,7 +58,7 @@ function generateReadme () {
         }
       ;
 
-    MarkDox.process(Parser, options, function () {
+    MarkDox.process("./all.md", options, function () {
          console.log('File `all.md` generated with success');
 
         for (var key in flattenPack) {
