@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+// Help content
 const HELP =
 "blah --help" +
 "\nusage: blah [options] [actions]" +
@@ -7,13 +8,14 @@ const HELP =
 "\nBlah version. Blah gitignore. Blah README. Boring. You need blah." +
 "\n" +
 "\noptions:" +
-"\n  --v, --version          print the version" +
-"\n  --help                  print this output" +
+"\n  --v, --version          prints the version" +
+"\n  --help                  prints this output" +
 "\n" +
 "\nactions:" +
-"\n  readme                  creates the readme.md file" +
+"\n  readme                  creates the README.md file containing the documentation also" +
 "\n  gitignore               creates .gitignore file" +
 "\n  license [license-name]  creates the LICENSE file by providing the license name" +
+"\n  license docs            creates the DOCUMENTATION.md file" +
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
@@ -29,13 +31,24 @@ var Mustache = require("mustache")
  * getPackage
  * Returns the parsed content of package.json
  *
- * @return string representing the content of package.json file
- * found in the current directory
+ * @name getPackage
+ * @function
+ * @return {String} content of package.json file found in the current directory
  */
 function getPackage() {
     return require(process.env.PWD + "/package");
 }
 
+/**
+ * generateDocs
+ * Generate documentation file from package.json main file.
+ *
+ * @name generateDocs
+ * @function
+ * @param {String} file Output file name (default: `DOCUMENTATION.md`)
+ * @param {Function} callback The callback function
+ * @return {undefined}
+ */
 function generateDocs(file, callback) {
     var pack = getPackage();
     MarkDox.process("./" + pack.main, {
@@ -48,7 +61,10 @@ function generateDocs(file, callback) {
  * generateReadme
  * Returns a string representing the readme content of the project.
  *
- * @return: string representing the content of README.md file
+ * @name generateReadme
+ * @function
+ * @param {Function} callback The callback function
+ * @return {undefined}
  */
 function generateReadme(callback) {
 
@@ -66,7 +82,7 @@ function generateReadme(callback) {
         mData.documentation = Fs.readFileSync(outputFile);
         Fs.unlinkSync(outputFile);
         for (var k in pack) {
-            mData[k] = pack;
+            mData[k] = pack[k];
         }
         content = Mustache.render(content, mData);
         callback(null, content);
@@ -78,7 +94,9 @@ function generateReadme(callback) {
  * generateGitignore
  * Returns the content of .gitignore file
  *
- * @return: string representing the content of .gitignore file
+ * @name generateGitignore
+ * @function
+ * @return {String} Content of gitignore file.
  */
 function generateGitignore() {
 
@@ -95,10 +113,12 @@ function generateGitignore() {
 
 /**
  * generateLicense
- * Returns the content of the LICENSE by providing the @licenseName
+ * Returns the content of the LICENSE by providing the `@licenseName`.
  *
- * @param licenseName: the license name
- * @return string representing the LICENSE content
+ * @name generateLicense
+ * @function
+ * @param {String} licenseName The license name (e.g. `mit`)
+ * @return {String} The content of license.
  */
 function generateLicense(licenseName) {
 
@@ -195,20 +215,26 @@ var options = {
 };
 
 // Parse process.argv and run the needed action
+var found = false;
 for (var i = 2; i < process.argv.length; ++i) {
     var cArg = process.argv[i];
     for (var op in options) {
         var cOp = options[op];
         if (cOp.aliases.indexOf(cArg) !== -1) {
             cOp.run();
+            found = true;
+            break;
         }
     }
 }
 
 // No actions, no fun
-if (process.argv.length === 2) {
+if (process.argv.length === 2 && !found) {
     console.error("No action/option provided. Run blah --help for more information");
+    found = true;
 }
 
 // Invalid option/action
-console.error("Invalid option or action: " + process.argv.slice(2).join(", "));
+if (!found) {
+    console.error("Invalid option or action: " + process.argv.slice(2).join(", "));
+}

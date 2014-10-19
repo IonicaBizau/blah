@@ -1,12 +1,12 @@
-# [object Object]
-{description}
+# blah
+Blah version. Blah gitignore. Blah README. Boring. You need blah.
 
 ## Installation
 Run the following commands to download and install the application:
 
 ```sh
-$  clone  [object Object]
-$ cd [object Object]
+$ git clone git@github.com:IonicaBizau/node-blah.git blah
+$ cd blah
 $ npm install
 ```
 
