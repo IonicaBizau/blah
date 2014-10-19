@@ -135,7 +135,7 @@ function generateLicense(licenseName) {
         ;
 }
 
-/**
+/*!
  * Available options and actions
  *
  */
