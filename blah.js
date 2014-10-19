@@ -237,6 +237,7 @@ var options = {
                     break;
                 default:
                     console.error("Invalid input: " + what + ". Pass one of the following values: major, minor, patch.");
+                    process.exit(1);
                     break;
             }
 
