@@ -5,9 +5,36 @@ Blah version. Blah gitignore. Blah README. Boring. You need blah.
 Run the following commands to download and install the application:
 
 ```sh
+# Globally from NPM
+$ sudo npm install -g blah
+# Locally from Git
 $ git clone git@github.com:IonicaBizau/node-blah.git blah
 $ cd blah
 $ npm install
+$ ./blah.js --version
+```
+
+## Help
+
+```sh
+$ ./blah.js --help
+blah --help
+usage: blah [options] [actions]
+
+Blah version. Blah gitignore. Blah README. Boring. You need blah.
+
+options:
+  --v, --version          prints the version
+  --help                  prints this output
+
+actions:
+  readme                  creates the README.md file containing the documentation also
+  gitignore               creates .gitignore file
+  license [license-name]  creates the LICENSE file by providing the license name
+  docs                    creates the DOCUMENTATION.md file
+  version <what>          where <what> can be 'major', 'minor' or 'patch'. Default: patch
+
+Documentation can be found at https://github.com/IonicaBizau/node-blah
 ```
 
 ## Documentation
