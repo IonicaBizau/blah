@@ -17,6 +17,7 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
+// Dependencies
 var Mustache = require("mustache")
   , Fs = require("fs")
   , Path = require("path")
@@ -35,6 +36,12 @@ function getPackage() {
     return require(process.env.PWD + "/package");
 }
 
+function generateDocs(file, callback) {
+    MarkDox.process("./" + pack.main, {
+        template: Path.resolve(__dirname + "/markdox-res/template.ejs")
+      , output: file || "./DOCUMENTATION.md"
+    }, callback);
+}
 
 /**
  * generateReadme
@@ -42,26 +49,28 @@ function getPackage() {
  *
  * @return: string representing the content of README.md file
  */
-function generateReadme() {
+function generateReadme(callback) {
 
     var pack = getPackage()
       , flattenPack = JxUtils.flattenObject(pack)
       , content = Fs.readFileSync(__dirname + "/templates/README.md").toString()
-      , markdoxOps = {
-            template: Path.resolve(__dirname + "/markdox-res/template.ejs")
-        }
+      , outputFile = "./docs-" + Math.random().toString(36) + ".md"
       ;
 
-    MarkDox.process("./" + pack.main, markdoxOps, function(err, doc) {
-        debugger;
-         console.log('File `all.md` generated with success');
-
-        for (var key in flattenPack) {
-            content = content.replace(new RegExp("{" + key + "+}", "g"), flattenPack[key]);
+    generateDocs(outputFile, function (err) {
+        if (err) {
+            return callback("Error when generating docs." + err.toString());
         }
-
-        return content;
+        var mData = {};
+        mData.documentation = Fs.readFileSync(outputFile);
+        Fs.unlinkSync(outputFile);
+        for (var k in pack) {
+            mData[k] = pack;
+        }
+        content = Mustache.render(content, mData);
+        callback(null, content);
     });
+
 }
 
 /**
@@ -148,10 +157,10 @@ var options = {
     // Actions
   , "readme": {
         run: function() {
-            Fs.writeFileSync(
-                "./README.md"
-              , generateReadme()
-            )
+            generateReadme(function (err, content) {
+                if (err) { return console.log(err); }
+                Fs.writeFileSync( "./README.md" , content);
+            });
         }
       , aliases: ["readme"]
     }
@@ -175,10 +184,10 @@ var options = {
     }
   , "docs": {
         run: function() {
-            Fs.writeFileSync(
-                "./docs.md"
-              , generateDocs(process.argv[3])
-            )
+            generateDocs("", function (err, data) {
+                if (err) { return console.log(err); }
+                console.log("Generated DOCUMENTATION.md");
+            });
         }
       , aliases: ["docs"]
     }
