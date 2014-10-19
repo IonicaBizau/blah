@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+// Help content
 const HELP =
 "blah --help" +
 "\nusage: blah [options] [actions]" +
@@ -7,13 +8,14 @@ const HELP =
 "\nBlah version. Blah gitignore. Blah README. Boring. You need blah." +
 "\n" +
 "\noptions:" +
-"\n  --v, --version          print the version" +
-"\n  --help                  print this output" +
+"\n  --v, --version          prints the version" +
+"\n  --help                  prints this output" +
 "\n" +
 "\nactions:" +
-"\n  readme                  creates the readme.md file" +
+"\n  readme                  creates the README.md file containing the documentation also" +
 "\n  gitignore               creates .gitignore file" +
 "\n  license [license-name]  creates the LICENSE file by providing the license name" +
+"\n  license docs            creates the DOCUMENTATION.md file" +
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
@@ -229,6 +231,7 @@ for (var i = 2; i < process.argv.length; ++i) {
 // No actions, no fun
 if (process.argv.length === 2 && !found) {
     console.error("No action/option provided. Run blah --help for more information");
+    found = true;
 }
 
 // Invalid option/action
