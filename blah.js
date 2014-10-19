@@ -39,7 +39,7 @@ function getPackage() {
 function generateDocs(file, callback) {
     var pack = getPackage();
     MarkDox.process("./" + pack.main, {
-        template: Path.resolve(__dirname + "/markdox-res/template.ejs")
+        template: __dirname + "/markdox-res/template.ejs"
       , output: file || "./DOCUMENTATION.md"
     }, callback);
 }
@@ -201,7 +201,6 @@ for (var i = 2; i < process.argv.length; ++i) {
         var cOp = options[op];
         if (cOp.aliases.indexOf(cArg) !== -1) {
             cOp.run();
-            process.exit(0);
         }
     }
 }
@@ -209,7 +208,6 @@ for (var i = 2; i < process.argv.length; ++i) {
 // No actions, no fun
 if (process.argv.length === 2) {
     console.error("No action/option provided. Run blah --help for more information");
-    process.exit(1);
 }
 
 // Invalid option/action
