@@ -17,6 +17,12 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
+var Mustache = require("mustache")
+  , Fs = require("fs")
+  , Path = require("path")
+  , JxUtils = require("jxutils")
+  , MarkDox = require("markdox")
+  ;
 
 /**
  * getPackage
@@ -25,8 +31,8 @@ const HELP =
  * @return string representing the content of package.json file
  * found in the current directory
  */
-function getPackage () {
-    return require (process.env.PWD + "/package");
+function getPackage() {
+    return require(process.env.PWD + "/package");
 }
 
 
@@ -36,23 +42,17 @@ function getPackage () {
  *
  * @return: string representing the content of README.md file
  */
-function generateReadme () {
+function generateReadme() {
 
-    var pack = getPackage ()
-      , Fs = require("fs")
-      , Path = require("path")
-      , JxUtils = require("jxutils")
+    var pack = getPackage()
       , flattenPack = JxUtils.flattenObject(pack)
       , content = Fs.readFileSync(__dirname + "/templates/README.md").toString()
-      , MarkDox = require("markdox")
       , markdoxOps = {
             template: Path.resolve(__dirname + "/markdox-res/template.ejs")
         }
       ;
 
-    debugger;
-
-    MarkDox.process("./" + pack.main, markdoxOps, function (err, doc) {
+    MarkDox.process("./" + pack.main, markdoxOps, function(err, doc) {
         debugger;
          console.log('File `all.md` generated with success');
 
@@ -70,7 +70,7 @@ function generateReadme () {
  *
  * @return: string representing the content of .gitignore file
  */
-function generateGitignore () {
+function generateGitignore() {
 
     var content =
         "*.swp\n" +
@@ -90,17 +90,16 @@ function generateGitignore () {
  * @param licenseName: the license name
  * @return string representing the LICENSE content
  */
-function generateLicense (licenseName) {
+function generateLicense(licenseName) {
 
     var fullName = null
-      , pack = require (process.env.PWD + "/package")
+      , pack = require(process.env.PWD + "/package")
       ;
 
     try {
-        var gitconfigLines = require ("fs").readFileSync(
+        var gitconfigLines = Fs.readFileSync(
             require('path-extra').homedir() + "/.gitconfig"
         ).toString().replace(/\t/g, "").split("\n");
-
         for (var i = 0; i < gitconfigLines.length; ++i) {
             var cLine = gitconfigLines[i].trim();
             if (/^name/.test(cLine)) {
@@ -108,7 +107,7 @@ function generateLicense (licenseName) {
                 break;
             }
         }
-    } catch (e) {
+    } catch(e) {
     }
 
     if (!fullName) {
@@ -116,13 +115,13 @@ function generateLicense (licenseName) {
         fullName = "[fullname]";
     }
 
-    return require ("fs")
-        .readFileSync (__dirname + "/templates/licenses/" + licenseName.toLowerCase() + ".txt")
-        .toString ()
-        .replace ("[project]", pack.name)
-        .replace ("[year]", new Date().getFullYear())
-        .replace ("[fullname]", fullName)
-        .replace ("[description]", pack.description)
+    return Fs
+        .readFileSync(__dirname + "/templates/licenses/" + licenseName.toLowerCase() + ".txt")
+        .toString()
+        .replace("[project]", pack.name)
+        .replace("[year]", new Date().getFullYear())
+        .replace("[fullname]", fullName)
+        .replace("[description]", pack.description)
         ;
 }
 
@@ -134,8 +133,8 @@ function generateLicense (licenseName) {
  * @param {String} fileName The input JavaScript file'
  * @return {String} The generated docs
  */
-function generateDocs (fileName) {
-    var content = require("fs").readFileSync(require("path").resolve(fileName)).toString().split("\n");
+function generateDocs(fileName) {
+    var content = Fs.readFileSync(Path.resolve(fileName)).toString().split("\n");
     var docs = "";
     for (var i = 0, parsing = false, k = -1; i < content; ++i) {
         var cLine = content[i];
@@ -146,14 +145,14 @@ function generateDocs (fileName) {
         var cDoc = {};
 
         if (parsing) {
-            docs += ([
+            docs +=([
                 // name
-                function () { cDoc.name = cLine.replace("*", "").trim(); }
+                function() { cDoc.name = cLine.replace("*", "").trim(); }
                 // empty line
               , undefined
                 // name
-              , function () { return cLine.replace("*", "").trim() }
-            ][++k] || function () {})()
+              , function() { return cLine.replace("*", "").trim() }
+            ][++k] || function() {})()
         }
     }
 
@@ -167,22 +166,22 @@ var options = {
 
     // Options
     "version": {
-        run: function () {
-            console.log("Blah v" + require ("./package").version)
+        run: function() {
+            console.log("Blah v" + require("./package").version)
         }
       , aliases: ["-v", "--version", "--v", "-version"]
     }
   , "help": {
-        run: function () {
-            console.log (HELP);
+        run: function() {
+            console.log(HELP);
         }
       , aliases: ["-h", "--help", "--h", "-help"]
     }
 
     // Actions
   , "readme": {
-        run: function () {
-            require ("fs").writeFileSync (
+        run: function() {
+            Fs.writeFileSync(
                 "./README.md"
               , generateReadme()
             )
@@ -190,8 +189,8 @@ var options = {
       , aliases: ["readme"]
     }
   , "gitignore": {
-        run: function () {
-            require ("fs").writeFileSync (
+        run: function() {
+            Fs.writeFileSync(
                 "./.gitignore"
               , generateGitignore()
             )
@@ -199,19 +198,19 @@ var options = {
       , aliases: ["gitignore"]
     }
   , "license": {
-        run: function () {
-            require ("fs").writeFileSync (
+        run: function() {
+            Fs.writeFileSync(
                 "./LICENSE"
-              , generateLicense (process.argv[3])
+              , generateLicense(process.argv[3])
             )
         }
       , aliases: ["license"]
     }
   , "docs": {
-        run: function () {
-            require ("fs").writeFileSync (
+        run: function() {
+            Fs.writeFileSync(
                 "./docs.md"
-              , generateDocs (process.argv[3])
+              , generateDocs(process.argv[3])
             )
         }
       , aliases: ["docs"]
@@ -223,18 +222,18 @@ for (var i = 2; i < process.argv.length; ++i) {
     var cArg = process.argv[i];
     for (var op in options) {
         var cOp = options[op];
-        if (cOp.aliases.indexOf (cArg) !== -1) {
+        if (cOp.aliases.indexOf(cArg) !== -1) {
             cOp.run();
-            process.exit (0);
+            process.exit(0);
         }
     }
 }
 
 // No actions, no fun
 if (process.argv.length === 2) {
-    console.error ("No action/option provided. Run blah --help for more information");
-    process.exit (1);
+    console.error("No action/option provided. Run blah --help for more information");
+    process.exit(1);
 }
 
 // Invalid option/action
-console.error ("Invalid option or action: " + process.argv.slice (2).join(", "));
+console.error("Invalid option or action: " + process.argv.slice(2).join(", "));
