@@ -9,7 +9,8 @@
   "dependencies": {
     "path-extra": "*",
     "markdox": "*",
-    "jxutils": "*"
+    "jxutils": "*",
+    "mustache": "0.8.2"
   },
   "repository": {
     "type": "git",
