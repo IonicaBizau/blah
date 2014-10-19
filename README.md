@@ -5,7 +5,7 @@
 Run the following commands to download and install the application:
 
 ```sh
-$ git clone git@github.com:IonicaBizau&#x2F;node-blah.git blah
+$ git clone git@github.com:IonicaBizau/node-blah.git blah
 $ cd blah
 $ npm install
 ```
