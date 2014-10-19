@@ -1,5 +1,5 @@
 # {{{name}}}
-{description}
+{{{description}}}
 
 ## Installation
 Run the following commands to download and install the application:
