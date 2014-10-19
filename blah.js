@@ -66,7 +66,7 @@ function generateReadme(callback) {
         mData.documentation = Fs.readFileSync(outputFile);
         Fs.unlinkSync(outputFile);
         for (var k in pack) {
-            mData[k] = pack;
+            mData[k] = pack[k];
         }
         content = Mustache.render(content, mData);
         callback(null, content);

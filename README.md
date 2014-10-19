@@ -1,12 +1,12 @@
-# [object Object]
+# blah
 {description}
 
 ## Installation
 Run the following commands to download and install the application:
 
 ```sh
-$  clone  [object Object]
-$ cd [object Object]
+$ git clone git@github.com:IonicaBizau&#x2F;node-blah.git blah
+$ cd blah
 $ npm install
 ```
 
