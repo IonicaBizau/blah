@@ -126,39 +126,6 @@ function generateLicense(licenseName) {
 }
 
 /**
- * generateDocs
- *
- * @name generateDocs
- * @function
- * @param {String} fileName The input JavaScript file'
- * @return {String} The generated docs
- */
-function generateDocs(fileName) {
-    var content = Fs.readFileSync(Path.resolve(fileName)).toString().split("\n");
-    var docs = "";
-    for (var i = 0, parsing = false, k = -1; i < content; ++i) {
-        var cLine = content[i];
-        if (cLine.indexOf("/**") !== -1 && !parsing) {
-            parsing = true;
-        }
-
-        var cDoc = {};
-
-        if (parsing) {
-            docs +=([
-                // name
-                function() { cDoc.name = cLine.replace("*", "").trim(); }
-                // empty line
-              , undefined
-                // name
-              , function() { return cLine.replace("*", "").trim() }
-            ][++k] || function() {})()
-        }
-    }
-
-}
-
-/**
  * Available options and actions
  *
  */
