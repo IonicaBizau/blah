@@ -195,20 +195,25 @@ var options = {
 };
 
 // Parse process.argv and run the needed action
+var found = false;
 for (var i = 2; i < process.argv.length; ++i) {
     var cArg = process.argv[i];
     for (var op in options) {
         var cOp = options[op];
         if (cOp.aliases.indexOf(cArg) !== -1) {
             cOp.run();
+            found = true;
+            break;
         }
     }
 }
 
 // No actions, no fun
-if (process.argv.length === 2) {
+if (process.argv.length === 2 && !found) {
     console.error("No action/option provided. Run blah --help for more information");
 }
 
 // Invalid option/action
-console.error("Invalid option or action: " + process.argv.slice(2).join(", "));
+if (!found) {
+    console.error("Invalid option or action: " + process.argv.slice(2).join(", "));
+}
