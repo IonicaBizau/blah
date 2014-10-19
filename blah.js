@@ -212,6 +212,37 @@ var options = {
         }
       , aliases: ["docs"]
     }
+  , "bump-version": {
+        run: function() {
+            var pack = getPackage()
+              , version = pack.version.split(".").map(function (x) {
+                    return parseInt(x, 10);
+                })
+              , what = process.argv[3]
+              ;
+
+            switch (what) {
+                case "major":
+                    ++version[0];
+                    version[1] = 0;
+                    version[2] = 0;
+                    break;
+                case "minor":
+                    ++version[1];
+                    version[0] = 0;
+                    break;
+                case "patch":
+                    ++version[0];
+                    break;
+            }
+
+            pack.version = version.join(".");
+            Fs.writeFileSync(process.env.PWD + "/package.json", JSON.stringify(
+                pack, null 2
+            ));
+        }
+      , aliases: ["version"]
+    }
 };
 
 // Parse process.argv and run the needed action
