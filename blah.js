@@ -15,7 +15,8 @@ const HELP =
 "\n  readme                  creates the README.md file containing the documentation also" +
 "\n  gitignore               creates .gitignore file" +
 "\n  license [license-name]  creates the LICENSE file by providing the license name" +
-"\n  license docs            creates the DOCUMENTATION.md file" +
+"\n  docs                    creates the DOCUMENTATION.md file" +
+"\n  version <what>          where <what> can be 'major', 'minor' or 'patch'. Default: patch" +
 "\n" +
 "\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
 
@@ -211,6 +212,41 @@ var options = {
             });
         }
       , aliases: ["docs"]
+    }
+  , "bump-version": {
+        run: function() {
+            var pack = getPackage()
+              , version = pack.version.split(".").map(function (x) {
+                    return parseInt(x, 10);
+                })
+              , what = process.argv[3] || "patch"
+              ;
+
+            switch (what) {
+                case "major":
+                    ++version[0];
+                    version[1] = 0;
+                    version[2] = 0;
+                    break;
+                case "minor":
+                    ++version[1];
+                    version[2] = 0;
+                    break;
+                case "patch":
+                    ++version[2];
+                    break;
+                default:
+                    console.error("Invalid input: " + what + ". Pass one of the following values: major, minor, patch.");
+                    process.exit(1);
+                    break;
+            }
+
+            pack.version = version.join(".");
+            Fs.writeFileSync(process.env.PWD + "/package.json", JSON.stringify(
+                pack, null, 2
+            ));
+        }
+      , aliases: ["version"]
     }
 };
 
