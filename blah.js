@@ -43,22 +43,17 @@ function generateReadme () {
       , Path = require("path")
       , JxUtils = require("jxutils")
       , flattenPack = JxUtils.flattenObject(pack)
-      , content = Fs.readFileSync(__dirname + "/templates/README.md").toString();
+      , content = Fs.readFileSync(__dirname + "/templates/README.md").toString()
       , MarkDox = require("markdox")
-      , Parser = require("dox-parser")
       , markdoxOps = {
-            output: function () {
-                console.log(arguments);
-            }
-          , formatter: MarkDox
-          , compiler: function (filepath, data) {
-                return myCustomCompiler(data);
-            }
-          , template: Path.resolve(__dirname + "/markdox-res/template.ejs")
+            template: Path.resolve(__dirname + "/markdox-res/template.ejs")
         }
       ;
 
-    MarkDox.process("./all.md", options, function () {
+    debugger;
+
+    MarkDox.process("./" + pack.main, markdoxOps, function (err, doc) {
+        debugger;
          console.log('File `all.md` generated with success');
 
         for (var key in flattenPack) {
