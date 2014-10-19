@@ -29,13 +29,24 @@ var Mustache = require("mustache")
  * getPackage
  * Returns the parsed content of package.json
  *
- * @return string representing the content of package.json file
- * found in the current directory
+ * @name getPackage
+ * @function
+ * @return {String} content of package.json file found in the current directory
  */
 function getPackage() {
     return require(process.env.PWD + "/package");
 }
 
+/**
+ * generateDocs
+ * Generate documentation file from package.json main file.
+ *
+ * @name generateDocs
+ * @function
+ * @param {String} file Output file name (default: `DOCUMENTATION.md`)
+ * @param {Function} callback The callback function
+ * @return {undefined}
+ */
 function generateDocs(file, callback) {
     var pack = getPackage();
     MarkDox.process("./" + pack.main, {
@@ -48,7 +59,10 @@ function generateDocs(file, callback) {
  * generateReadme
  * Returns a string representing the readme content of the project.
  *
- * @return: string representing the content of README.md file
+ * @name generateReadme
+ * @function
+ * @param {Function} callback The callback function
+ * @return {undefined}
  */
 function generateReadme(callback) {
 
@@ -78,7 +92,9 @@ function generateReadme(callback) {
  * generateGitignore
  * Returns the content of .gitignore file
  *
- * @return: string representing the content of .gitignore file
+ * @name generateGitignore
+ * @function
+ * @return {String} Content of gitignore file.
  */
 function generateGitignore() {
 
@@ -95,10 +111,12 @@ function generateGitignore() {
 
 /**
  * generateLicense
- * Returns the content of the LICENSE by providing the @licenseName
+ * Returns the content of the LICENSE by providing the `@licenseName`.
  *
- * @param licenseName: the license name
- * @return string representing the LICENSE content
+ * @name generateLicense
+ * @function
+ * @param {String} licenseName The license name (e.g. `mit`)
+ * @return {String} The content of license.
  */
 function generateLicense(licenseName) {
 
