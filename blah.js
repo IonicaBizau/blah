@@ -37,6 +37,7 @@ function getPackage() {
 }
 
 function generateDocs(file, callback) {
+    var pack = getPackage();
     MarkDox.process("./" + pack.main, {
         template: Path.resolve(__dirname + "/markdox-res/template.ejs")
       , output: file || "./DOCUMENTATION.md"
