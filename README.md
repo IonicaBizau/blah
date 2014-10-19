@@ -1,5 +1,5 @@
 # blah
-{description}
+Blah version. Blah gitignore. Blah README. Boring. You need blah.
 
 ## Installation
 Run the following commands to download and install the application:
