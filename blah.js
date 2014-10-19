@@ -229,16 +229,16 @@ var options = {
                     break;
                 case "minor":
                     ++version[1];
-                    version[0] = 0;
+                    version[2] = 0;
                     break;
                 case "patch":
-                    ++version[0];
+                    ++version[2];
                     break;
             }
 
             pack.version = version.join(".");
             Fs.writeFileSync(process.env.PWD + "/package.json", JSON.stringify(
-                pack, null 2
+                pack, null, 2
             ));
         }
       , aliases: ["version"]
