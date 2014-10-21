@@ -46,15 +46,17 @@ function getPackage() {
  *
  * @name generateDocs
  * @function
- * @param {String} file Output file name (default: `DOCUMENTATION.md`)
+ * @param {String} input Input file name (default: main file from package.json)
+ * @param {String} output Output file name (default: `DOCUMENTATION.md`)
  * @param {Function} callback The callback function
  * @return {undefined}
  */
-function generateDocs(file, callback) {
+function generateDocs(input, output, callback) {
     var pack = getPackage();
-    MarkDox.process("./" + pack.main, {
+    input = input || pack.main;
+    MarkDox.process("./" + input, {
         template: __dirname + "/markdox-res/template.ejs"
-      , output: file || "./DOCUMENTATION.md"
+      , output: output || "./DOCUMENTATION.md"
     }, callback);
 }
 
@@ -75,7 +77,7 @@ function generateReadme(callback) {
       , outputFile = "./docs-" + Math.random().toString(36) + ".md"
       ;
 
-    generateDocs(outputFile, function (err) {
+    generateDocs("", outputFile, function (err) {
         if (err) {
             return callback("Error when generating docs." + err.toString());
         }
@@ -206,7 +208,7 @@ var options = {
     }
   , "docs": {
         run: function() {
-            generateDocs("", function (err, data) {
+            generateDocs(process.argv[3], "", function (err, data) {
                 if (err) { return console.log(err); }
                 console.log("Generated DOCUMENTATION.md");
             });
