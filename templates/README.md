@@ -11,7 +11,7 @@ $ npm install
 ```
 
 ## Documentation
-{{documentation}}
+{{{documentation}}}
 
 ## How to contribute
 
