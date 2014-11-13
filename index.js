@@ -19,7 +19,7 @@ var Blah = module.exports = {};
  */
 Blah.getPackage = function () {
     return require(process.env.PWD + "/package");
-}
+};
 
 /**
  * generateDocs
@@ -39,7 +39,7 @@ Blah.generateDocs = function (input, output, callback) {
         template: __dirname + "/markdox-res/template.ejs"
       , output: output || "./DOCUMENTATION.md"
     }, callback);
-}
+};
 
 /**
  * generateReadme
@@ -72,7 +72,7 @@ Blah.generateReadme = function (callback) {
         callback(null, content);
     });
 
-}
+};
 
 /**
  * generateGitignore
@@ -93,7 +93,7 @@ Blah.generateGitignore = function () {
       ;
 
     return content;
-}
+};
 
 /**
  * generateLicense
@@ -137,4 +137,4 @@ Blah.generateLicense = function (licenseName) {
         .replace("[fullname]", fullName)
         .replace("[description]", pack.description)
         ;
-}
+};

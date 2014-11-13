@@ -42,7 +42,7 @@ var options = {
     // Options
     "version": {
         run: function() {
-            console.log("Blah v" + require("../package").version)
+            console.log("Blah v" + require("../package").version);
         }
       , aliases: ["-v", "--version", "--v", "-version"]
     }
@@ -68,7 +68,7 @@ var options = {
             Fs.writeFileSync(
                 "./.gitignore"
               , Blah.generateGitignore()
-            )
+            );
         }
       , aliases: ["gitignore"]
     }
@@ -77,7 +77,7 @@ var options = {
             Fs.writeFileSync(
                 "./LICENSE"
               , Blah.generateLicense(process.argv[3])
-            )
+            );
         }
       , aliases: ["license"]
     }
