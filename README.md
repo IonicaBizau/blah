@@ -16,11 +16,11 @@ $ ./blah.js --version
 ## Help
 
 ```sh
-$ ./blah.js --help
+$ blah --help
 blah --help
 usage: blah [options] [actions]
 
-Blah version. Blah gitignore. Blah README. Boring. You need blah.
+A command line tool to optimize the repetitive actions.
 
 options:
   --v, --version          prints the version
@@ -30,10 +30,18 @@ actions:
   readme                  creates the README.md file containing the documentation also
   gitignore               creates .gitignore file
   license [license-name]  creates the LICENSE file by providing the license name
-  docs                    creates the DOCUMENTATION.md file
+  docs <input-file>       creates the DOCUMENTATION.md file from main file or <input-file>
+                          if this was provided
   version <what>          where <what> can be 'major', 'minor' or 'patch'. Default: patch
 
-Documentation can be found at https://github.com/IonicaBizau/node-blah
+examples:
+  $ blah --version          # outputs the version
+  $ blah readme             # generates the README.md file using package.json
+  $ blah gitignore          # generates the .gitignore file
+  $ blah license mit        # generates the LICENSE file taking copyright holder information
+                            # from package.json or GIT variables
+  $ blah docs index.js      # generates DOCUMENTATION.md from index.js, parsing JSDoc comments
+  $ blah version major      # bumps the major field of version, in package.json file
 ```
 
 ## Documentation
