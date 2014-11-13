@@ -1,5 +1,4 @@
-# blah
-A command line tool to optimize the repetitive actions.
+![Blah - A command line tool to optimize the repetitive actions.](http://i.imgur.com/at4TK2R.png)
 
 ## Installation
 Run the following commands to download and install the application:
