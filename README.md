@@ -13,6 +13,14 @@ $ npm install
 $ ./blah.js --version
 ```
 
+## How to use
+
+After you have `package.json` file you can run `blah readme` to generate a README.md file with information taken from package.json and parsed documentation from code.
+
+To generate the `LICENSE` file (let's create a file containing MIT license), use use `blah license mit`.
+
+To generate documentation for a specific file, run `blah docs your-file.js`.
+
 ## Help
 
 ```sh
@@ -93,6 +101,14 @@ Returns the content of the LICENSE by providing the `@licenseName`.
 3. Commit your changes in that branch.
 4. Open a pull request, and reference the initial issue in the pull request
    message.
+
+## Changelog
+
+### `1.0.0`
+ - First stable release.
+
+### `0.0.x`
+ - Prereleases.
 
 ## License
 See the [LICENSE](./LICENSE) file.

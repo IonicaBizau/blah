@@ -1,6 +1,6 @@
 {
   "name": "blah",
-  "version": "0.0.14",
+  "version": "1.0.0",
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "index.js",
   "scripts": {
