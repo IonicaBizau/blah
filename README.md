@@ -1,5 +1,5 @@
 # blah
-Blah version. Blah gitignore. Blah README. Boring. You need blah.
+A command line tool to optimize the repetitive actions.
 
 ## Installation
 Run the following commands to download and install the application:

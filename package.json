@@ -1,7 +1,7 @@
 {
   "name": "blah",
   "version": "0.0.13",
-  "description": "Blah version. Blah gitignore. Blah README. Boring. You need blah.",
+  "description": "A command line tool to optimize the repetitive actions.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
