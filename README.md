@@ -38,6 +38,9 @@ Documentation can be found at https://github.com/IonicaBizau/node-blah
 ```
 
 ## Documentation
+
+Below you find the list with the methods that can be accessed programmatically:
+
 ## `getPackage()`
 Returns the parsed content of package.json
 
