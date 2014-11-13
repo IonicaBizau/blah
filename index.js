@@ -33,7 +33,7 @@ Blah.getPackage = function () {
  * @return {undefined}
  */
 Blah.generateDocs = function (input, output, callback) {
-    var pack = getPackage();
+    var pack = Blah.getPackage();
     input = input || pack.main;
     MarkDox.process("./" + input, {
         template: __dirname + "/markdox-res/template.ejs"
@@ -52,13 +52,13 @@ Blah.generateDocs = function (input, output, callback) {
  */
 Blah.generateReadme = function (callback) {
 
-    var pack = getPackage()
+    var pack = Blah.getPackage()
       , flattenPack = JxUtils.flattenObject(pack)
       , content = Fs.readFileSync(__dirname + "/templates/README.md").toString()
       , outputFile = "./docs-" + Math.random().toString(36) + ".md"
       ;
 
-    generateDocs("", outputFile, function (err) {
+    Blah.generateDocs("", outputFile, function (err) {
         if (err) {
             return callback("Error when generating docs." + err.toString());
         }
