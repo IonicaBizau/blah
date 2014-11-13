@@ -41,39 +41,40 @@ Documentation can be found at https://github.com/IonicaBizau/node-blah
 
 Below you find the list with the methods that can be accessed programmatically:
 
-## `getPackage()`
+### `getPackage()`
 Returns the parsed content of package.json
 
-### Return:
-* **String** content of package.json file found in the current directory
+#### Return
+- **String** content of package.json file found in the current directory
 
-## `generateDocs(file, callback)`
+### `generateDocs(input, output, callback)`
 Generate documentation file from package.json main file.
 
-### Params:
-* **String** `file`: Output file name (default: `DOCUMENTATION.md`)
-* **Function** `callback`: The callback function
+#### Params
+- **String** `input`: Input file name (default: main file from package.json)
+- **String** `output`: Output file name (default: `DOCUMENTATION.md`)
+- **Function** `callback`: The callback function
 
-## `generateReadme(callback)`
+### `generateReadme(callback)`
 Returns a string representing the readme content of the project.
 
-### Params:
-* **Function** `callback`: The callback function
+#### Params
+- **Function** `callback`: The callback function
 
-## `generateGitignore()`
+### `generateGitignore()`
 Returns the content of .gitignore file
 
-### Return:
-* **String** Content of gitignore file.
+#### Return
+- **String** Content of gitignore file.
 
-## `generateLicense(licenseName)`
+### `generateLicense(licenseName)`
 Returns the content of the LICENSE by providing the `@licenseName`.
 
-### Params:
-* **String** `licenseName`: The license name (e.g. `mit`)
+#### Params
+- **String** `licenseName`: The license name (e.g. `mit`)
 
-### Return:
-* **String** The content of license.
+#### Return
+- **String** The content of license.
 
 ## How to contribute
 
