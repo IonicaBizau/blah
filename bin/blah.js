@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 // Dependencies
-var Blah = require("../index.js");
+var Blah = require("../index.js")
+  , Fs = require("fs")
+  ;
 
 // Help content
 const HELP =
