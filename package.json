@@ -2,7 +2,7 @@
   "name": "blah",
   "version": "0.0.10",
   "description": "Blah version. Blah gitignore. Blah README. Boring. You need blah.",
-  "main": "blah.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
