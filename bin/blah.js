@@ -10,7 +10,7 @@ const HELP =
 "blah --help" +
 "\nusage: blah [options] [actions]" +
 "\n" +
-"\nBlah version. Blah gitignore. Blah README. Boring. You need blah." +
+"\nA command line tool to optimize the repetitive actions." +
 "\n" +
 "\noptions:" +
 "\n  --v, --version          prints the version" +
@@ -20,10 +20,18 @@ const HELP =
 "\n  readme                  creates the README.md file containing the documentation also" +
 "\n  gitignore               creates .gitignore file" +
 "\n  license [license-name]  creates the LICENSE file by providing the license name" +
-"\n  docs                    creates the DOCUMENTATION.md file" +
+"\n  docs <input-file>       creates the DOCUMENTATION.md file from main file or <input-file>" +
+"\n                          if this was provided" +
 "\n  version <what>          where <what> can be 'major', 'minor' or 'patch'. Default: patch" +
 "\n" +
-"\nDocumentation can be found at https://github.com/IonicaBizau/node-blah";
+"\nexamples:" +
+"\n  $ blah --version          # outputs the version" +
+"\n  $ blah readme             # generates the README.md file using package.json" +
+"\n  $ blah gitignore          # generates the .gitignore file" +
+"\n  $ blah license mit        # generates the LICENSE file taking copyright holder information" +
+"\n                            # from package.json or GIT variables" +
+"\n  $ blah docs index.js      # generates DOCUMENTATION.md from index.js, parsing JSDoc comments" +
+"\n  $ blah version major      # bumps the major field of version, in package.json file";
 
 /*!
  * Available options and actions
