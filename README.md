@@ -1,5 +1,4 @@
-# blah
-Blah version. Blah gitignore. Blah README. Boring. You need blah.
+![Blah - A command line tool to optimize the repetitive actions.](http://i.imgur.com/at4TK2R.png)
 
 ## Installation
 Run the following commands to download and install the application:
@@ -17,11 +16,11 @@ $ ./blah.js --version
 ## Help
 
 ```sh
-$ ./blah.js --help
+$ blah --help
 blah --help
 usage: blah [options] [actions]
 
-Blah version. Blah gitignore. Blah README. Boring. You need blah.
+A command line tool to optimize the repetitive actions.
 
 options:
   --v, --version          prints the version
@@ -31,46 +30,58 @@ actions:
   readme                  creates the README.md file containing the documentation also
   gitignore               creates .gitignore file
   license [license-name]  creates the LICENSE file by providing the license name
-  docs                    creates the DOCUMENTATION.md file
+  docs <input-file>       creates the DOCUMENTATION.md file from main file or <input-file>
+                          if this was provided
   version <what>          where <what> can be 'major', 'minor' or 'patch'. Default: patch
 
-Documentation can be found at https://github.com/IonicaBizau/node-blah
+examples:
+  $ blah --version          # outputs the version
+  $ blah readme             # generates the README.md file using package.json
+  $ blah gitignore          # generates the .gitignore file
+  $ blah license mit        # generates the LICENSE file taking copyright holder information
+                            # from package.json or GIT variables
+  $ blah docs index.js      # generates DOCUMENTATION.md from index.js, parsing JSDoc comments
+  $ blah version major      # bumps the major field of version, in package.json file
 ```
 
 ## Documentation
-## `getPackage()`
+
+Below you find the list with the methods that can be accessed programmatically:
+
+### `getPackage()`
 Returns the parsed content of package.json
 
-### Return:
-* **String** content of package.json file found in the current directory
+#### Return
+- **String** content of package.json file found in the current directory
 
-## `generateDocs(file, callback)`
+### `generateDocs(input, output, callback)`
 Generate documentation file from package.json main file.
 
-### Params:
-* **String** `file`: Output file name (default: `DOCUMENTATION.md`)
-* **Function** `callback`: The callback function
+#### Params
+- **String** `input`: Input file name (default: main file from package.json)
+- **String** `output`: Output file name (default: `DOCUMENTATION.md`)
+- **Function** `callback`: The callback function
 
-## `generateReadme(callback)`
+### `generateReadme(callback)`
 Returns a string representing the readme content of the project.
 
-### Params:
-* **Function** `callback`: The callback function
+#### Params
+- **Function** `callback`: The callback function
 
-## `generateGitignore()`
+### `generateGitignore()`
 Returns the content of .gitignore file
 
-### Return:
-* **String** Content of gitignore file.
+#### Return
+- **String** Content of gitignore file.
 
-## `generateLicense(licenseName)`
+### `generateLicense(licenseName)`
 Returns the content of the LICENSE by providing the `@licenseName`.
 
-### Params:
-* **String** `licenseName`: The license name (e.g. `mit`)
+#### Params
+- **String** `licenseName`: The license name (e.g. `mit`)
 
-### Return:
-* **String** The content of license.
+#### Return
+- **String** The content of license.
 
 ## How to contribute
 

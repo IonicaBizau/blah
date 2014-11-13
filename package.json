@@ -1,8 +1,8 @@
 {
   "name": "blah",
-  "version": "0.0.10",
-  "description": "Blah version. Blah gitignore. Blah README. Boring. You need blah.",
-  "main": "blah.js",
+  "version": "0.0.14",
+  "description": "A command line tool to optimize the repetitive actions.",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,7 @@
     "url": "git@github.com:IonicaBizau/node-blah.git"
   },
   "bin": {
-    "blah": "./blah.js"
+    "blah": "./bin/blah.js"
   },
   "keywords": [
     "blah",
