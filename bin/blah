@@ -3,7 +3,6 @@
 // Dependencies
 var Blah = require("../lib")
   , Fs = require("fs")
-  , AnsiParser = require("ansi-parser")
   , Logger = require("bug-killer")
   , Clp = require("clp")
   , Package = require("../package")
@@ -111,46 +110,46 @@ if (bumpOpt.is_provided) {
 }
 
 
-/*!
- * Available options and actions
- *
- */
-var options = {
-  , "bump-version": {
-        run: function() {
-            var pack = Blah.getPackage()
-              , version = pack.version.split(".").map(function (x) {
-                    return parseInt(x, 10);
-                })
-              , what = process.argv[3] || "patch"
-              ;
-
-            switch (what) {
-                case "major":
-                    ++version[0];
-                    version[1] = 0;
-                    version[2] = 0;
-                    break;
-                case "minor":
-                    ++version[1];
-                    version[2] = 0;
-                    break;
-                case "patch":
-                    ++version[2];
-                    break;
-                default:
-                    console.error("Invalid input: " + what + ". Pass one of the following values: major, minor, patch.");
-                    process.exit(1);
-                    break;
-            }
-
-            pack.version = version.join(".");
-            Fs.writeFileSync(process.env.PWD + "/package.json", JSON.stringify(
-                pack, null, 2
-            ));
-        }
-      , aliases: ["version"]
-    }
-};
-
+///*!
+// * Available options and actions
+// *
+// */
+//var options = {
+//  , "bump-version": {
+//        run: function() {
+//            var pack = Blah.getPackage()
+//              , version = pack.version.split(".").map(function (x) {
+//                    return parseInt(x, 10);
+//                })
+//              , what = process.argv[3] || "patch"
+//              ;
+//
+//            switch (what) {
+//                case "major":
+//                    ++version[0];
+//                    version[1] = 0;
+//                    version[2] = 0;
+//                    break;
+//                case "minor":
+//                    ++version[1];
+//                    version[2] = 0;
+//                    break;
+//                case "patch":
+//                    ++version[2];
+//                    break;
+//                default:
+//                    console.error("Invalid input: " + what + ". Pass one of the following values: major, minor, patch.");
+//                    process.exit(1);
+//                    break;
+//            }
+//
+//            pack.version = version.join(".");
+//            Fs.writeFileSync(process.env.PWD + "/package.json", JSON.stringify(
+//                pack, null, 2
+//            ));
+//        }
+//      , aliases: ["version"]
+//    }
+//};
+//
 console.log(parser.displayHelp());
