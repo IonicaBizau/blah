@@ -57,9 +57,11 @@ function log(err, data) {
     Logger.log(data, "info");
 }
 
+var blh = new Blah(process.cwd());
+
 // Create the readme file
 if (readmeOpt.is_provided) {
-    Blah.readme(function (err, content) {
+    blh.readme(function (err, content) {
         if (err) { return log(err); }
         Fs.writeFile("./README.md", content, function (err) {
             if (err) { return log(err); }
@@ -70,7 +72,7 @@ if (readmeOpt.is_provided) {
 
 // Create the license file
 if (licenseOpt.is_provided) {
-    Blah.license(licenseOpt.value, function (err, content) {
+    blh.license(licenseOpt.value, function (err, content) {
         if (err) { return log(err); }
         Fs.writeFile("./LICENSE", content, function (err) {
             if (err) { return log(err); }
@@ -81,7 +83,7 @@ if (licenseOpt.is_provided) {
 
 // Create the .gitignore file
 if (licenseOpt.is_provided) {
-    Blah.gitignore(function (err, content) {
+    blh.gitignore(function (err, content) {
         if (err) { return log(err); }
         Fs.writeFile("./.gitignore", content, function (err) {
             if (err) { return log(err); }
@@ -92,7 +94,7 @@ if (licenseOpt.is_provided) {
 
 // Generate documentation
 if (docsOpt.is_provided) {
-    Blah.docs(docsOpt.value, function (err, content) {
+    blh.docs(docsOpt.value, function (err, content) {
         if (err) { return log(err); }
         Fs.writeFile("./DOCUMENTATION.md", content, function (err) {
             if (err) { return log(err); }
@@ -103,7 +105,7 @@ if (docsOpt.is_provided) {
 
 // Generate documentation
 if (bumpOpt.is_provided) {
-    Blah.bumpVersion(bumpOpt.value, function (err, content) {
+    blh.bumpVersion(bumpOpt.value, function (err, content) {
         if (err) { return log(err); }
         log(null, "Bumped the " + bumpOpt.value + " version.")
     });
