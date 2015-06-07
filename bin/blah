@@ -120,7 +120,6 @@ if (bumpOpt.is_provided) {
     });
 }
 
-
 ///*!
 // * Available options and actions
 // *
