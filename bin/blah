@@ -71,7 +71,7 @@ var blh = new Blah(process.cwd());
 // Initialize blah
 if (initOpt.is_provided) {
     return blh.init(function (err) {
-        log(err, "Initialized blah in " + blh.path);
+        log(err, "Initialized blah in " + blh.path + "/.blah/");
     });
 }
 
