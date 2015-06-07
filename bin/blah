@@ -6,6 +6,7 @@ var Blah = require("../lib")
   , Logger = require("bug-killer")
   , Clp = require("clp")
   , Package = require("../package")
+  , Typpy = require("typpy")
   ;
 
 // Configurations
@@ -55,7 +56,13 @@ var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
  * @return {undefined}
  */
 function log(err, data) {
-    if (err) { return Logger.log(err.stack || err, "error"); }
+    if (Typpy(err) === "array") {
+        return err.forEach(function (c) {
+            log(c);
+        });
+    }
+    if (err) { return Logger.log(err.message || err, "error"); }
+    if (!data) { return; }
     Logger.log(data, "info");
 }
 
