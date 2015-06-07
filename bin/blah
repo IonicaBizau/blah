@@ -14,6 +14,7 @@ Logger.config.logLevel = 4;
 
 // Parse the command line arguments
 var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
+  , initOpt = new Clp.Option(["i", "init"], "Inits the .blah directory.")
   , gitignoreOpt = new Clp.Option(["g", "gitignore"], "Creates the .gitignore file.")
   , licenseOpt = new Clp.Option(["l", "license"], "Generates a LICENSE file with copyright information.", "license")
   , docsOpt = new Clp.Option(["d", "docs"], "Generates the markdown documentation (DOCUMENTATION.md) for input file.", "path")
@@ -35,7 +36,8 @@ var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
       , notes: "Happy Blahing!"
       , process: true
     }, [
-        readmeOpt
+        initOpt
+      , readmeOpt
       , gitignoreOpt
       , licenseOpt
       , docsOpt
@@ -58,6 +60,13 @@ function log(err, data) {
 }
 
 var blh = new Blah(process.cwd());
+
+// Initialize blah
+if (initOpt.is_provided) {
+    return blh.init(function (err) {
+        log(err, "Initialized blah in " + blh.path);
+    });
+}
 
 // Create the readme file
 if (readmeOpt.is_provided) {
