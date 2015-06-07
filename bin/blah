@@ -77,53 +77,37 @@ if (initOpt.is_provided) {
 
 // Create the readme file
 if (readmeOpt.is_provided) {
-    blh.readme(function (err, content) {
-        if (err) { return log(err); }
-        Fs.writeFile("./README.md", content, function (err) {
-            if (err) { return log(err); }
-            log(null, "Generated README.md");
-        });
+    blh.readme(function (err) {
+        log(err, "Generated README.md");
     });
 }
 
 // Create the license file
 if (licenseOpt.is_provided) {
-    blh.license(licenseOpt.value, function (err, content) {
-        if (err) { return log(err); }
-        Fs.writeFile("./LICENSE", content, function (err) {
-            if (err) { return log(err); }
-            log(null, "Generated the LICENSE file.");
-        });
+    blh.license(licenseOpt.value, function (err) {
+        log(err, "Generated the LICENSE file.");
     });
 }
 
 // Create the .gitignore file
-if (licenseOpt.is_provided) {
-    blh.gitignore(function (err, content) {
-        if (err) { return log(err); }
-        Fs.writeFile("./.gitignore", content, function (err) {
-            if (err) { return log(err); }
-            log(null, "Generated the .gitignore file.");
-        });
+if (gitignoreOpt.is_provided) {
+    blh.gitignore(function (err) {
+        log(err, "Generated the .gitignore file.");
     });
 }
 
 // Generate documentation
 if (docsOpt.is_provided) {
-    blh.docs(docsOpt.value, function (err, content) {
+    blh.docs(docsOpt.value, function (err) {
         if (err) { return log(err); }
-        Fs.writeFile("./DOCUMENTATION.md", content, function (err) {
-            if (err) { return log(err); }
-            log(null, "Generated DOCUMENTATION.md.");
-        });
+        log(null, "Generated DOCUMENTATION.md.");
     });
 }
 
 // Generate documentation
 if (bumpOpt.is_provided) {
-    blh.bumpVersion(bumpOpt.value, function (err, content) {
-        if (err) { return log(err); }
-        log(null, "Bumped the " + bumpOpt.value + " version.")
+    blh.bumpVersion(bumpOpt.value, function (err) {
+        log(err, "Bumped the " + bumpOpt.value + " version.")
     });
 }
 
