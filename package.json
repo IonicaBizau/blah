@@ -17,7 +17,7 @@
     "url": "git@github.com:IonicaBizau/node-blah.git"
   },
   "bin": {
-    "blah": "./bin/blah.js"
+    "blah": "./bin/blah"
   },
   "keywords": [
     "blah",
