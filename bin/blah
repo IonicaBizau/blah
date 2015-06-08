@@ -123,4 +123,3 @@ if (contributingOpt.is_provided) {
         log(err, "Generated CONTRIBUTING.md");
     });
 }
-
