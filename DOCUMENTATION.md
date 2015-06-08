@@ -4,16 +4,13 @@ You can see below the API reference of this module.
 ### `Blah(path)`
 Creates a new `Blah` instance.
 
-#### Params 
+#### Params
 - **String** `path`: The Blah working directory (default: `process.cwd()`).
-
-#### Return
-- **Blah** The `Blah` instance.
 
 ### `search(file, callback)`
 Searches a file in the blah directories.
 
-#### Params 
+#### Params
 - **String** `file`: The relative path to a file to search in the templates directories (in the following order: local `.blah` directory,
 `~/.blah-templates`, library templates).
 - **Function** `callback`: The callback function.
@@ -21,19 +18,19 @@ Searches a file in the blah directories.
 ### `prepare(callback)`
 Prepares the Blah data.
 
-#### Params 
+#### Params
 - **Function** `callback`: The callback function.
 
 ### `init(callback)`
 Inits the `.blah` directory in the current project.
 
-#### Params 
+#### Params
 - **Function** `callback`: The callback function.
 
 ### `docs(input, output, callback)`
 Generates the DOCUMENTATION.md file, parsing the input files.
 
-#### Params 
+#### Params
 - **String** `input`: Input file name (default: main file from package.json)
 - **String** `output`: Output file name (default: `DOCUMENTATION.md`)
 - **Function** `callback`: The callback function.
@@ -41,26 +38,26 @@ Generates the DOCUMENTATION.md file, parsing the input files.
 ### `readme(callback)`
 Creates the `README.md` file.
 
-#### Params 
+#### Params
 - **Function** `callback`: The callback function
 
 ### `gitignore(callback)`
 Creates the `.gitignore` file.
 
-#### Params 
+#### Params
 - **Function** `callback`: The callback function.
 
 ### `license(license, callback)`
 Creates the `LICENSE` file.
 
-#### Params 
+#### Params
 - **String** `license`: The license name.
 - **Function** `callback`: The callback function.
 
 ### `render(path, data, callback)`
 Renders a template from file.
 
-#### Params 
+#### Params
 - **String** `path`: The template path.
 - **Object** `data`: Additional data to merge into the template data.
 - **Function** `callback`: The callback function.
@@ -68,6 +65,13 @@ Renders a template from file.
 ### `contributing(callback)`
 Generates the `CONTRIBUTING.md` file.
 
-#### Params 
+#### Params
+- **Function** `callback`: The callback function.
+
+### `version(what, callback)`
+Bumps the provided version.
+
+#### Params
+- **String** `what`: The version which should be bumped. It takes one of the following values: `"major"`, `"minor"`, `"patch"`. The default is `"patch"`.
 - **Function** `callback`: The callback function.
 
