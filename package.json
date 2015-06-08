@@ -25,6 +25,9 @@
     "gitignore",
     "readme"
   ],
+  "blah": {
+    "h_img": "http://i.imgur.com/at4TK2R.png"
+  },
   "author": "Ionică Bizău <bizauionica@gmail.com>",
   "license": "MIT",
   "bugs": {
