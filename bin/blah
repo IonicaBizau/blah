@@ -46,6 +46,10 @@ var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
     ])
   ;
 
+if (parser.args.length === 2) {
+    return console.log(parser.displayHelp());
+}
+
 /*!
  * log
  *
@@ -153,4 +157,3 @@ if (bumpOpt.is_provided) {
 //    }
 //};
 //
-console.log(parser.displayHelp());
