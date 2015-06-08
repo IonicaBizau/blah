@@ -19,6 +19,7 @@ var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
   , gitignoreOpt = new Clp.Option(["g", "gitignore"], "Creates the .gitignore file.")
   , licenseOpt = new Clp.Option(["l", "license"], "Generates a LICENSE file with copyright information.", "license")
   , docsOpt = new Clp.Option(["d", "docs"], "Generates the markdown documentation (DOCUMENTATION.md) for input file.", "path")
+  , contributingOpt = new Clp.Option(["c", "contributing"], "Generates the CONTRIBUTING.md.")
   , bumpOpt = new Clp.Option(["b", "bump-version"], "Bumps the package.json version.", "version", "minor")
   , parser = new Clp({
         name: "Blah"
@@ -41,6 +42,7 @@ var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
       , readmeOpt
       , gitignoreOpt
       , licenseOpt
+      , contributingOpt
       , docsOpt
       , bumpOpt
     ])
@@ -108,10 +110,17 @@ if (docsOpt.is_provided) {
     });
 }
 
-// Generate documentation
+// Bump version
 if (bumpOpt.is_provided) {
     blh.bumpVersion(bumpOpt.value, function (err) {
         log(err, "Bumped the " + bumpOpt.value + " version.")
+    });
+}
+
+// Generate CONTRIBUTING.md
+if (contributingOpt.is_provided) {
+    blh.contributing(function (err) {
+        log(err, "Generated CONTRIBUTING.md");
     });
 }
 
