@@ -9,10 +9,6 @@ var Blah = require("../lib")
   , Typpy = require("typpy")
   ;
 
-// Configurations
-Logger.config.displayDate = false;
-Logger.config.logLevel = 4;
-
 // Parse the command line arguments
 var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
   , initOpt = new Clp.Option(["i", "init"], "Inits the .blah directory.")
