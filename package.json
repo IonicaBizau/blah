@@ -6,11 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "path-extra": "*",
-    "markdox": "*",
-    "mustache": "0.8.2"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:IonicaBizau/node-blah.git"
@@ -32,5 +27,28 @@
   "bugs": {
     "url": "https://github.com/IonicaBizau/node-blah/issues"
   },
-  "homepage": "https://github.com/IonicaBizau/node-blah"
+  "homepage": "https://github.com/IonicaBizau/node-blah",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "barbe": "^2.0.0",
+    "bug-killer": "^3.0.0",
+    "deffy": "^2.0.0",
+    "ejs": "^2.3.1",
+    "clp": "^3.0.0",
+    "is-there": "^4.0.0",
+    "jade": "^1.11.0",
+    "markdox": "^0.1.8",
+    "mustache": "^0.8.2",
+    "ncp": "^2.0.0",
+    "parent-search": "^1.0.0",
+    "r-json": "^1.0.0",
+    "same-time": "^2.0.0",
+    "streamp": "^1.0.0",
+    "typpy": "^1.0.0",
+    "ul": "^5.0.0",
+    "w-json": "^1.0.0"
+  },
+  "devDependencies": {}
 }
