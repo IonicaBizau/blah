@@ -30,7 +30,7 @@ var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
           , "$ blah --docs index.js # generates DOCUMENTATION.md from index.js, parsing JSDoc comments"
           , "$ blah --bump-version major # bumps the major field of version, in package.json file"
         ]
-      , docs_url: "https://github.com/IonicaBizau/blah"
+      , docs_url: Package.homepage
       , notes: "Happy Blahing!"
       , process: true
     }, [
