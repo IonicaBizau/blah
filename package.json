@@ -40,7 +40,6 @@
     "is-there": "^4.0.0",
     "jade": "^1.11.0",
     "markdox": "^0.1.8",
-    "mustache": "^2.1.1",
     "ncp": "^2.0.0",
     "parent-search": "^1.0.0",
     "r-json": "^1.0.0",
