@@ -22,15 +22,11 @@ A command line tool to optimize the repetitive actions.
 ## Installation
 
 ```sh
-$ npm i blah
+$ npm i -g blah
 ```
 
 ### CLI Usage
-You can install the package globally and use it as command line tool:
-
-```sh
-$ npm i -g blah
-```
+After installing the package globally you can use it as command line tool:
 
 Then, run `blah --help` and see what the cli tool can do.
 
