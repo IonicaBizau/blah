@@ -34,6 +34,37 @@ $ npm i -g blah
 
 Then, run `blah --help` and see what the cli tool can do.
 
+```sh
+$ blah -h
+Usage: blah [options]
+
+Options:
+  -i, --init                    Inits the .blah directory.
+  -r, --readme                  Creates the README.md file.
+  -g, --gitignore               Creates the .gitignore file.
+  -l, --license <license>       Generates a LICENSE file with copyright
+                                information.
+  -c, --contributing            Generates the CONTRIBUTING.md.
+  -d, --docs <path>             Generates the markdown documentation
+                                (DOCUMENTATION.md) for input file.
+  -b, --bump-version <version>  Bumps the package.json version.
+  -h, --help                    Displays this help.
+  -v, --version                 Displays version information.
+
+Examples:
+
+  $ blah --readme      # generates the README.md file using package.json
+  $ blah --gitignore   # generates the .gitignore file
+  $ blah --license mit # generates the LICENSE file taking copyright holder information
+                       # from package.json or GIT variables
+  $ blah --docs index.js # generates DOCUMENTATION.md from index.js, parsing JSDoc comments
+  $ blah --bump-version major # bumps the major field of version, in package.json file
+
+Happy Blahing!
+
+Documentation can be found at https://github.com/IonicaBizau/node-blah
+```
+
 ## Example
 
 Here is an example how to use this package as library.
