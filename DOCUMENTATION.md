@@ -27,12 +27,13 @@ Inits the `.blah` directory in the current project.
 #### Params
 - **Function** `callback`: The callback function.
 
-### `docs(input, output, callback)`
+### `docs(input, output, writeFile, callback)`
 Generates the DOCUMENTATION.md file, parsing the input files.
 
 #### Params
 - **String** `input`: Input file name (default: main file from package.json)
 - **String** `output`: Output file name (default: `DOCUMENTATION.md`)
+- **Boolean** `writeFile`: If `false`, the docs will be returned via the callback function, without writing the output file.
 - **Function** `callback`: The callback function.
 
 ### `readme(callback)`
