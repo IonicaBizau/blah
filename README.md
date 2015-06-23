@@ -28,7 +28,7 @@ $ npm i -g blah
 ### CLI Usage
 After installing the package globally you can use it as command line tool:
 
-Then, run `blah --help` and see what the cli tool can do.
+Run `blah --help` and see what the cli tool can do.
 
 ```sh
 $ blah -h
