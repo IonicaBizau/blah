@@ -22,7 +22,11 @@
   "blah": {
     "h_img": "http://i.imgur.com/at4TK2R.png"
   },
-  "author": "Ionică Bizău <bizauionica@gmail.com>",
+  "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
+  "contributors": [
+    "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
+    "Silviu Bogan <silviubogan@gmail.com> (https://github.com/silviubogan)"
+  ],
   "license": "KINDLY",
   "bugs": {
     "url": "https://github.com/IonicaBizau/node-blah/issues"
