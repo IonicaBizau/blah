@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:IonicaBizau/node-blah.git"
+    "url": "git@github.com:IonicaBizau/blah.git"
   },
   "bin": {
     "blah": "./bin/blah"
@@ -29,9 +29,9 @@
   ],
   "license": "KINDLY",
   "bugs": {
-    "url": "https://github.com/IonicaBizau/node-blah/issues"
+    "url": "https://github.com/IonicaBizau/blah/issues"
   },
-  "homepage": "https://github.com/IonicaBizau/node-blah",
+  "homepage": "https://github.com/IonicaBizau/blah",
   "directories": {
     "example": "examples"
   },
