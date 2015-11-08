@@ -36,7 +36,6 @@
     "example": "examples"
   },
   "dependencies": {
-    "barbe": "^2.0.0",
     "bug-killer": "^4.0.0",
     "clp": "^3.0.0",
     "deffy": "^2.0.0",
