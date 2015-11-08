@@ -59,6 +59,6 @@ Contributions are more than welcome!
 
 Thanks! :sweat_smile:
 
-[1]: https://github.com/IonicaBizau/node-blah/issues
+[1]: https://github.com/IonicaBizau/blah/issues
 
 [2]: https://github.com/IonicaBizau/code-style
