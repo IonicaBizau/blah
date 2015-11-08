@@ -44,11 +44,11 @@
     "jade": "^1.11.0",
     "markdox": "^0.1.9",
     "ncp": "^2.0.0",
+    "one-by-one": "^2.0.0",
     "parent-search": "^1.0.0",
     "r-json": "^1.0.0",
     "same-time": "^2.0.0",
-    "one-by-one": "^2.0.0",
-    "streamp": "^1.0.0",
+    "streamp": "^2.0.0",
     "typpy": "^2.0.0",
     "ul": "^5.0.0",
     "w-json": "^1.0.0"
