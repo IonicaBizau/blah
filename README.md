@@ -1,6 +1,7 @@
 [![blah](http://i.imgur.com/at4TK2R.png)](#)
 
 # `$ blah` [![Support this project][donate-now]][paypal-donations]
+
 A command line tool to optimize the repetitive actions.
 
 ## Installation
