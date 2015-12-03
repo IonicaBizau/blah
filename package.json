@@ -1,6 +1,6 @@
 {
   "name": "blah",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "lib/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
     "Silviu Bogan <silviubogan@gmail.com> (https://github.com/silviubogan)"
   ],
-  "license": "KINDLY",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/IonicaBizau/blah/issues"
   },
