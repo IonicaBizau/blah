@@ -1,52 +1,14 @@
 #!/usr/bin/env node
 
-// Dependencies
-var Blah = require("../lib")
-  , Fs = require("fs")
-  , Logger = require("bug-killer")
-  , Clp = require("clp")
-  , Package = require("../package")
-  , Typpy = require("typpy")
-  ;
+"use strict";
 
-// Parse the command line arguments
-var readmeOpt = new Clp.Option(["r", "readme"], "Creates the README.md file.")
-  , initOpt = new Clp.Option(["i", "init"], "Inits the .blah directory.")
-  , gitignoreOpt = new Clp.Option(["g", "gitignore"], "Creates the .gitignore file.")
-  , licenseOpt = new Clp.Option(["l", "license"], "Generates a LICENSE file with copyright information.", "license")
-  , docsOpt = new Clp.Option(["d", "docs"], "Generates the markdown documentation (DOCUMENTATION.md) for input file.", "path")
-  , contributingOpt = new Clp.Option(["c", "contributing"], "Generates the CONTRIBUTING.md.")
-  , bumpOpt = new Clp.Option(["b", "bump-version"], "Bumps the package.json version.", "version", "minor")
-  , parser = new Clp({
-        name: "Blah"
-      , description: Package.description
-      , version: Package.version
-      , exe: Package.name
-      , examples: [
-          , "$ blah --readme      # generates the README.md file using package.json"
-          , "$ blah --gitignore   # generates the .gitignore file"
-          , "$ blah --license mit # generates the LICENSE file taking copyright holder information"
-          , "                     # from package.json or GIT variables"
-          , "$ blah --docs index.js # generates DOCUMENTATION.md from index.js, parsing JSDoc comments"
-          , "$ blah --bump-version major # bumps the major field of version, in package.json file"
-        ]
-      , docs_url: Package.homepage
-      , notes: "Happy Blahing!"
-      , process: true
-    }, [
-        initOpt
-      , readmeOpt
-      , gitignoreOpt
-      , licenseOpt
-      , contributingOpt
-      , docsOpt
-      , bumpOpt
-    ])
-  ;
-
-if (parser.args.length === 2) {
-    return console.log(parser.displayHelp());
-}
+const Blah = require("../lib")
+    , Fs = require("fs")
+    , Logger = require("bug-killer")
+    , Tilda = require("tilda")
+    , Package = require("../package")
+    , Typpy = require("typpy")
+    ;
 
 /*!
  * log
@@ -59,7 +21,7 @@ if (parser.args.length === 2) {
  */
 function log(err, data) {
     if (Typpy(err) === "array") {
-        return err.forEach(function (c) {
+        return err.forEach(c => {
             log(c);
         });
     }
@@ -68,54 +30,78 @@ function log(err, data) {
     Logger.log(data, "info");
 }
 
-var blh = new Blah(process.cwd());
+new Tilda(`${__dirname}/../package.json`, {
+    actions: [{
+        name: "init"
+      , desc: "Inits the .blah directory."
+    }],
+    options: [{
+        opts: ["b", "bump-version"]
+      , desc: "Bumps the package.json version."
+      , type: String
+    }, {
+        opts: ["r", "readme"]
+      , desc: "Creates the README.md file."
+    }, {
+        opts: ["g", "gitignore"]
+      , desc:  "Creates the .gitignore file."
+    }, {
+        opts: ["l", "license"]
+      , desc: "Generates a LICENSE file with copyright information."
+      , name: "license"
+      , type: String
+    }, {
+        opts: ["d", "docs"]
+      , desc: "Generates the markdown documentation (DOCUMENTATION.md) for input file."
+      , name: "path"
+    }, {
+        opts: ["c", "contributing"]
+      , desc: "Generates the CONTRIBUTING.md."
+    }]
+  , examples: [
+        "blah --readme      # generates README.md"
+      , "blah --gitignore   # generates .gitignore"
+      , "blah --license mit # writes the MIT license in the LICENSE file"
+      , "blah --docs index.js # generates DOCUMENTATION.md from index.js, parsing JSDoc comments"
+      , "blah --bump-version major # bumps the major field of version, in package.json file"
+    ]
+  , notes: "Happy Blahing!"
+}).on("init", a => {
+    let blh = new Blah();
+    return blh.init(err => log(err, `Initialized blah in ${blh.path}/.blah/`));
+}).main(a => {
+    if (process.argv.length === 2) {
+        return a.displayHelp();
+    }
+    let blh = new Blah();
 
-// Initialize blah
-if (initOpt.is_provided) {
-    return blh.init(function (err) {
-        log(err, "Initialized blah in " + blh.path + "/.blah/");
-    });
-}
+    // Create the readme file
+    if (a.options.readme.is_provided) {
+        blh.readme(err => log(err, "Generated README.md"));
+    }
 
-// Create the readme file
-if (readmeOpt.is_provided) {
-    blh.readme(function (err) {
-        log(err, "Generated README.md");
-    });
-}
+    // Create the license file
+    if (a.options.license.is_provided) {
+        blh.license(a.options.license.value, err => log(err, "Generated the LICENSE file."));
+    }
 
-// Create the license file
-if (licenseOpt.is_provided) {
-    blh.license(licenseOpt.value, function (err) {
-        log(err, "Generated the LICENSE file.");
-    });
-}
+    // Create the .gitignore file
+    if (a.options.gitignore.is_provided) {
+        blh.gitignore(err => log(err, "Generated the .gitignore file."));
+    }
 
-// Create the .gitignore file
-if (gitignoreOpt.is_provided) {
-    blh.gitignore(function (err) {
-        log(err, "Generated the .gitignore file.");
-    });
-}
+    // Generate documentation
+    if (a.options.docs.is_provided) {
+        blh.docs(a.options.docs.value, err => log(err, "Generated DOCUMENTATION.md."));
+    }
 
-// Generate documentation
-if (docsOpt.is_provided) {
-    blh.docs(docsOpt.value, function (err) {
-        if (err) { return log(err); }
-        log(null, "Generated DOCUMENTATION.md.");
-    });
-}
+    // Bump version
+    if (a.options.b.is_provided) {
+        blh.version(a.options.b.value, err => log(err, `Bumped the ${a.options.b.value} version.`));
+    }
 
-// Bump version
-if (bumpOpt.is_provided) {
-    blh.version(bumpOpt.value, function (err) {
-        log(err, "Bumped the " + bumpOpt.value + " version.")
-    });
-}
-
-// Generate CONTRIBUTING.md
-if (contributingOpt.is_provided) {
-    blh.contributing(function (err) {
-        log(err, "Generated CONTRIBUTING.md");
-    });
-}
+    // Generate CONTRIBUTING.md
+    if (a.options.contributing.is_provided) {
+        blh.contributing(err => log(err, "Generated CONTRIBUTING.md"));
+    }
+});
