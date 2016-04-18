@@ -1,57 +1,66 @@
+
 [![blah](http://i.imgur.com/at4TK2R.png)](#)
 
 # `$ blah` [![PayPal](https://img.shields.io/badge/%24-paypal-f39c12.svg)][paypal-donations] [![Version](https://img.shields.io/npm/v/blah.svg)](https://www.npmjs.com/package/blah) [![Downloads](https://img.shields.io/npm/dt/blah.svg)](https://www.npmjs.com/package/blah) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
 
 > A command line tool to optimize the repetitive actions.
 
-## Installation
+## :cloud: Installation
 
 You can install the package globally and use it as command line tool:
+
 
 ```sh
 $ npm i -g blah
 ```
 
+
 Then, run `blah --help` and see what the CLI tool can do.
 
-```sh
+
+```
 $ blah --help
-Usage: blah [options]
+Usage: blah <command> [options]
+
+A command line tool to optimize the repetitive actions.
+
+Commands:
+  init  Inits the .blah directory.
 
 Options:
-  -i, --init                    Inits the .blah directory.             
-  -r, --readme                  Creates the README.md file.            
-  -g, --gitignore               Creates the .gitignore file.           
-  -l, --license <license>       Generates a LICENSE file with copyright
-                                information.                           
-  -c, --contributing            Generates the CONTRIBUTING.md.         
-  -d, --docs <path>             Generates the markdown documentation   
-                                (DOCUMENTATION.md) for input file.     
-  -b, --bump-version <version>  Bumps the package.json version.        
-  -h, --help                    Displays this help.                    
-  -v, --version                 Displays version information.          
+  -b, --bump-version       Bumps the package.json version.
+  -r, --readme             Creates the README.md file.
+  -g, --gitignore          Creates the .gitignore file.
+  -l, --license <license>  Generates a LICENSE file with copyright
+                           information.
+  -d, --docs <path>        Generates the markdown documentation
+                           (DOCUMENTATION.md) for input file.
+  -c, --contributing       Generates the CONTRIBUTING.md.
+  -v, --version            Displays version information.
+  -h, --help               Displays this help.
 
 Examples:
-  
-  $ blah --readme      # generates the README.md file using package.json
-  $ blah --gitignore   # generates the .gitignore file
-  $ blah --license mit # generates the LICENSE file taking copyright holder information
-                       # from package.json or GIT variables
+  $ blah --readme      # generates README.md
+  $ blah --gitignore   # generates .gitignore
+  $ blah --license mit # writes the MIT license in the LICENSE file
   $ blah --docs index.js # generates DOCUMENTATION.md from index.js, parsing JSDoc comments
   $ blah --bump-version major # bumps the major field of version, in package.json file
 
 Happy Blahing!
 
-Documentation can be found at https://github.com/IonicaBizau/blah
+Documentation can be found at https://github.com/IonicaBizau/blah.
 ```
 
-## Example
+## :clipboard: Example
+
 
 Here is an example how to use this package as library. To install it locally, as library, you can do that using `npm`:
 
 ```sh
 $ npm i --save blah
 ```
+
+
 
 ```js
 // Dependencies
@@ -71,17 +80,15 @@ blh.license("KINDLY", function (err) {
 });
 ```
 
-## Documentation
+## :memo: Documentation
 
 For full API reference, see the [DOCUMENTATION.md][docs] file.
 
-## How to contribute
+## :yum: How to contribute
 Have an idea? Found a bug? See [how to contribute][contributing].
 
-## Where is this library used?
-If you are using this library in one of your projects, add it in this list. :sparkles:
 
-## License
+## :scroll: License
 
 [MIT][license] © [Ionică Bizău][website]
 
