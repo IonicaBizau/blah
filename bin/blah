@@ -31,10 +31,6 @@ function log(err, data) {
 }
 
 new Tilda(`${__dirname}/../package.json`, {
-    actions: [{
-        name: "init"
-      , desc: "Inits the .blah directory."
-    }],
     options: [{
         opts: ["b", "bump-version"]
       , desc: "Bumps the package.json version."
@@ -66,6 +62,9 @@ new Tilda(`${__dirname}/../package.json`, {
       , "blah --bump-version major # bumps the major field of version, in package.json file"
     ]
   , notes: "Happy Blahing!"
+}).action({
+    name: "init"
+  , desc: "Inits the .blah directory."
 }).on("init", a => {
     let blh = new Blah();
     return blh.init(err => log(err, `Initialized blah in ${blh.path}/.blah/`));
