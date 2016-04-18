@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "abs": "^1.2.1",
+    "bindy": "^1.0.1",
     "bug-killer": "^4.2.1",
     "current-year": "^1.1.0",
     "deffy": "^2.2.1",
