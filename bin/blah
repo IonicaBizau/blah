@@ -8,6 +8,10 @@ const Blah = require("../lib")
     , Tilda = require("tilda")
     , Package = require("../package")
     , Typpy = require("typpy")
+    , rJson = require("r-json")
+    , oneByOne = require("one-by-one")
+    , bindy = require("bindy")
+    , isThere = require("is-there")
     ;
 
 /*!
@@ -53,7 +57,11 @@ new Tilda(`${__dirname}/../package.json`, {
     }, {
         opts: ["c", "contributing"]
       , desc: "Generates the CONTRIBUTING.md."
+    }, {
+        opts: ["f", "force"]
+      , desc: "When running `blah` without any arguments, force overriding existing files."
     }]
+
   , examples: [
         "blah --readme      # generates README.md"
       , "blah --gitignore   # generates .gitignore"
@@ -69,10 +77,53 @@ new Tilda(`${__dirname}/../package.json`, {
     let blh = new Blah();
     return blh.init(err => log(err, `Initialized blah in ${blh.path}/.blah/`));
 }).main(a => {
-    if (process.argv.length === 2) {
-        return a.displayHelp();
-    }
     let blh = new Blah();
+    if (process.argv.length === 2 || a.options.force.is_provided) {
+        return rJson("package.json", (err, pack) => {
+            if (err) { return log(err); }
+            let filesToGenerate = [
+                {
+                    file: ".gitignore"
+                  , handler: cb => blh.gitignore(cb)
+                }
+              , {
+                    file: "CONTRIBUTING.md"
+                  , handler: cb => blh.contributing(cb)
+                }
+              , {
+                    file: "LICENSE"
+                  , handler: cb => blh.license(pack.license, cb)
+                }
+              , {
+                    file: "DOCUMENTATION.md"
+                  , handler: cb => blh.docs(pack.main, cb)
+                }
+              , {
+                    file: "README.md"
+                  , handler: cb => blh.readme(cb)
+                }
+            ];
+
+            oneByOne(bindy(filesToGenerate, (c, next) => {
+                let force = a.options.force.is_provided
+                  , exists = isThere(c.file)
+                  ;
+
+                if (force || !exists) {
+                    if (force && exists)  {
+                        Logger.log(`Overriding ${c.file}`);
+                    }
+                    c.handler(err => {
+                        log(err, `Generated ${c.file}.`)
+                        next();
+                    })
+                } else {
+                    log(`Avoiding to override existing file: ${c.file}.`, "warn");
+                    next();
+                }
+            }));
+        });
+    }
 
     // Create the readme file
     if (a.options.readme.is_provided) {

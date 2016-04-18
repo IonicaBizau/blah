@@ -36,6 +36,8 @@ Options:
   -d, --docs <path>        Generates the markdown documentation
                            (DOCUMENTATION.md) for input file.
   -c, --contributing       Generates the CONTRIBUTING.md.
+  -f, --force              When running `blah` without any arguments, force
+                           overriding existing files.
   -v, --version            Displays version information.
   -h, --help               Displays this help.
 
