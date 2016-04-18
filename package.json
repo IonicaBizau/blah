@@ -1,6 +1,6 @@
 {
   "name": "blah",
-  "version": "2.7.0",
+  "version": "3.0.0-beta",
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "lib/index.js",
   "scripts": {
