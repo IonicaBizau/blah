@@ -1,11 +1,11 @@
 ## Documentation
 You can see below the API reference of this module.
 
-### `Blah(path)`
+### `Blah(cwd)`
 Creates a new `Blah` instance.
 
 #### Params
-- **String** `path`: The Blah working directory (default: `process.cwd()`).
+- **String** `cwd`: The Blah working directory (default: `process.cwd()`).
 
 ### `search(file, callback)`
 Searches a file in the blah directories.
@@ -27,13 +27,13 @@ Inits the `.blah` directory in the current project.
 #### Params
 - **Function** `callback`: The callback function.
 
-### `docs(input, output, writeFile, callback)`
+### `docs(input, output, writeToFile, callback)`
 Generates the DOCUMENTATION.md file, parsing the input files.
 
 #### Params
 - **String** `input`: Input file name (default: main file from package.json)
 - **String** `output`: Output file name (default: `DOCUMENTATION.md`)
-- **Boolean** `writeFile`: If `false`, the docs will be returned via the callback function, without writing the output file.
+- **Boolean** `writeToFile`: If `false`, the docs will be returned via the callback function, without writing the output file.
 - **Function** `callback`: The callback function.
 
 ### `readme(callback)`
