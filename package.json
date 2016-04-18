@@ -54,7 +54,9 @@
     "streamp": "^2.2.1",
     "typpy": "^2.0.0",
     "ul": "^5.2.1",
-    "w-json": "^1.3.1"
+    "w-json": "^1.3.1",
+    "write-file-trim": "^1.0.0",
+    "year-range": "^1.1.0"
   },
   "devDependencies": {}
 }
