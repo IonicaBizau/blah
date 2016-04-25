@@ -1,6 +1,6 @@
 {
   "name": "blah",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "lib/index.js",
   "scripts": {
@@ -61,5 +61,16 @@
     "write-file-trim": "^1.0.0",
     "year-range": "^1.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "files": [
+    "bin/",
+    "app/",
+    "lib/",
+    "dist/",
+    "src/",
+    "resources/",
+    "menu/",
+    "cli.js",
+    "index.js"
+  ]
 }
