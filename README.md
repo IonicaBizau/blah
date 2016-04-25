@@ -89,7 +89,6 @@ For full API reference, see the [DOCUMENTATION.md][docs] file.
 ## :yum: How to contribute
 Have an idea? Found a bug? See [how to contribute][contributing].
 
-
 ## :scroll: License
 
 [MIT][license] © [Ionică Bizău][website]
