@@ -1,7 +1,9 @@
 
 [![blah](http://i.imgur.com/at4TK2R.png)](#)
 
-# `$ blah` [![PayPal](https://img.shields.io/badge/%24-paypal-f39c12.svg)][paypal-donations] [![Version](https://img.shields.io/npm/v/blah.svg)](https://www.npmjs.com/package/blah) [![Downloads](https://img.shields.io/npm/dt/blah.svg)](https://www.npmjs.com/package/blah) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
+# `$ blah`
+
+ [![PayPal](https://img.shields.io/badge/%24-paypal-f39c12.svg)][paypal-donations] [![AMA](https://img.shields.io/badge/ask%20me-anything-1abc9c.svg)](https://github.com/IonicaBizau/ama) [![Version](https://img.shields.io/npm/v/blah.svg)](https://www.npmjs.com/package/blah) [![Downloads](https://img.shields.io/npm/dt/blah.svg)](https://www.npmjs.com/package/blah) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
 
 > A command line tool to optimize the repetitive actions.
 
@@ -89,6 +91,11 @@ For full API reference, see the [DOCUMENTATION.md][docs] file.
 ## :yum: How to contribute
 Have an idea? Found a bug? See [how to contribute][contributing].
 
+## :dizzy: Where is this library used?
+If you are using this library in one of your projects, add it in this list. :sparkles:
+
+
+ - [`ship-release`](https://github.com/IonicaBizau/ship-release#readme)—Publish new versions on GitHub and npm with ease.
 
 ## :scroll: License
 
