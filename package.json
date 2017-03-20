@@ -1,6 +1,6 @@
 {
   "name": "blah",
-  "version": "3.1.6",
+  "version": "3.1.7",
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "lib/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "blah": {
     "h_img": "http://i.imgur.com/at4TK2R.png"
   },
-  "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
+  "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)",
   "contributors": [
     "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
     "Silviu Bogan <silviubogan@gmail.com> (https://github.com/silviubogan)",
@@ -66,12 +66,11 @@
     "bin/",
     "app/",
     "lib/",
-    "build/",
     "dist/",
     "src/",
+    "scripts/",
     "resources/",
     "menu/",
-    "scripts/",
     "cli.js",
     "index.js"
   ]
