@@ -1,6 +1,6 @@
 {
   "name": "blah",
-  "version": "3.1.9",
+  "version": "3.1.10",
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "lib/index.js",
   "scripts": {
@@ -72,6 +72,9 @@
     "resources/",
     "menu/",
     "cli.js",
-    "index.js"
+    "index.js",
+    "bloggify.js",
+    "bloggify.json",
+    "bloggify/"
   ]
 }
