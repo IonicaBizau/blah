@@ -69,7 +69,12 @@ new Tilda(`${__dirname}/../package.json`, {
       , "blah --docs index.js # generates DOCUMENTATION.md from index.js, parsing JSDoc comments"
       , "blah --bump-version major # bumps the major field of version, in package.json file"
     ]
-  , notes: "Happy Blahing!"
+  , notes: `The templates directories that can contain templates based on which the files
+README.md, .gitignore, DOCUMENTATION.md and CONTRIBUTING.md are created, are
+searched in the following order: local .blah directory, ~/.blah-templates,
+library templates. The library templates are always available.
+
+Happy Blahing!`
 }).action({
     name: "init"
   , desc: "Inits the .blah directory."
