@@ -5,9 +5,7 @@
 
 # `$ blah`
 
- [![Support me on Patreon][badge_patreon]][patreon] [![Buy me a book][badge_amazon]][amazon] [![PayPal][badge_paypal_donate]][paypal-donations] [![Ask me anything](https://img.shields.io/badge/ask%20me-anything-1abc9c.svg)](https://github.com/IonicaBizau/ama) [![Version](https://img.shields.io/npm/v/blah.svg)](https://www.npmjs.com/package/blah) [![Downloads](https://img.shields.io/npm/dt/blah.svg)](https://www.npmjs.com/package/blah) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
-
-<a href="https://www.buymeacoffee.com/H96WwChMy" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee"></a>
+ [![Support me on Patreon][badge_patreon]][patreon] [![Buy me a book][badge_amazon]][amazon] [![PayPal][badge_paypal_donate]][paypal-donations] [![Ask me anything](https://img.shields.io/badge/ask%20me-anything-1abc9c.svg)](https://github.com/IonicaBizau/ama) [![Version](https://img.shields.io/npm/v/blah.svg)](https://www.npmjs.com/package/blah) [![Downloads](https://img.shields.io/npm/dt/blah.svg)](https://www.npmjs.com/package/blah)
 
 > A command line tool to optimize the repetitive actions.
 
@@ -38,18 +36,18 @@ Commands:
   init  Inits the .blah directory.
 
 Options:
-  -b, --bump-version       Bumps the package.json version.
-  -r, --readme             Creates the README.md file.
-  -g, --gitignore          Creates the .gitignore file.
-  -l, --license <license>  Generates a LICENSE file with copyright
-                           information.
-  -d, --docs <path>        Generates the markdown documentation
-                           (DOCUMENTATION.md) for input file.
-  -c, --contributing       Generates the CONTRIBUTING.md.
   -f, --force              When running `blah` without any arguments, force
                            overriding existing files.
-  -v, --version            Displays version information.
+  -c, --contributing       Generates the CONTRIBUTING.md.
+  -d, --docs <path>        Generates the markdown documentation
+                           (DOCUMENTATION.md) for input file.
+  -l, --license <license>  Generates a LICENSE file with copyright
+                           information.
+  -g, --gitignore          Creates the .gitignore file.
+  -r, --readme             Creates the README.md file.
+  -b, --bump-version       Bumps the package.json version.
   -h, --help               Displays this help.
+  -v, --version            Displays version information.
 
 Examples:
   $ blah --readme      # generates README.md
@@ -107,6 +105,8 @@ blh.license("KINDLY", function (err) {
 
 
 
+
+
 ## :question: Get Help
 
 There are few ways to get help:
@@ -115,6 +115,7 @@ There are few ways to get help:
  2. For bug reports and feature requests, open issues. :bug:
 
  3. For direct and quick help, you can [use Codementor](https://www.codementor.io/johnnyb). :rocket:
+
 
 
 
@@ -146,11 +147,6 @@ However, if you get some profit from this or just want to encourage me to contin
 Thanks! :heart:
 
 
-## :dizzy: Where is this library used?
-If you are using this library in one of your projects, add it in this list. :sparkles:
-
-
- - [`ship-release`](https://github.com/IonicaBizau/ship-release#readme)—Publish new versions on GitHub and npm with ease.
 
 ## :scroll: License
 
