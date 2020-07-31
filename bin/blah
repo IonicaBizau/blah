@@ -29,7 +29,7 @@ function log(err, data) {
             log(c);
         });
     }
-    if (err) { return Logger.log(err.message || err, "error"); }
+    if (err) { console.error(err); return Logger.log(err.message || err, "error"); }
     if (!data) { return; }
     Logger.log(data, "info");
 }
