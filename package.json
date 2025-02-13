@@ -1,6 +1,6 @@
 {
   "name": "blah",
-  "version": "5.4.1",
+  "version": "5.4.2",
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "lib/index.js",
   "scripts": {
@@ -73,6 +73,8 @@
     "menu/",
     "cli.js",
     "index.js",
+    "index.d.ts",
+    "package-lock.json",
     "bloggify.js",
     "bloggify.json",
     "bloggify/"
