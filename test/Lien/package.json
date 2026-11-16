@@ -1,0 +1,67 @@
+{
+  "scripts": {
+    "test": "node --test --test-timeout=15000 test/*.test.js",
+    "test:coverage": "node --test --test-timeout=15000 --experimental-test-coverage test/*.test.js"
+  },
+  "name": "lien",
+  "version": "5.0.0",
+  "description": "An easy to use web framework for Node.js.",
+  "main": "lib/index.js",
+  "keywords": [
+    "lien",
+    "link",
+    "request",
+    "response",
+    "framework"
+  ],
+  "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net/)",
+  "license": "MIT",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "devDependencies": {
+    "connect-mongo": "^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LienJS/Lien.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LienJS/Lien/issues"
+  },
+  "homepage": "https://github.com/LienJS/Lien",
+  "blah": {
+    "h_img": "assets/logo.png"
+  },
+  "dependencies": {
+    "@dr.pogodin/csurf": "^1.18.2",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.3.0",
+    "express-session": "^1.19.0",
+    "path-to-regexp": "^9.0.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./lib/index.js": "./lib/index.js",
+    "./lib/hooks.js": "./lib/hooks.js",
+    "./lib/to-buffer.js": "./lib/to-buffer.js",
+    "./lib": "./lib/index.js",
+    "./lib/index": "./lib/index.js",
+    "./lib/hooks": "./lib/hooks.js",
+    "./lib/to-buffer": "./lib/to-buffer.js"
+  },
+  "files": [
+    "assets/",
+    "lib/",
+    "example/",
+    "README.md",
+    "DOCUMENTATION.md",
+    "LICENSE"
+  ]
+}

@@ -14,8 +14,7 @@ Searches a file in the blah directories.
 
 #### Params
 
-- **String** `file`: The relative path to a file to search in the templates directories (in the following order: local `.blah` directory,
-`~/.blah-templates`, library templates).
+- **String** `file`: The relative path to a file to search in the templates directories (in the following order: local `.blah` directory, `~/.blah-templates`, library templates).
 - **Function** `callback`: The callback function.
 
 ### `prepare(callback)`
@@ -33,7 +32,7 @@ Inits the `.blah` directory in the current project.
 - **Function** `callback`: The callback function.
 
 ### `docs(input, output, writeToFile, callback)`
-Generates the DOCUMENTATION.md file, parsing the input files.
+Generates the DOCUMENTATION.md file from the input and its local JavaScript imports and requires.
 
 #### Params
 

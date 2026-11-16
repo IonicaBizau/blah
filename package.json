@@ -4,7 +4,7 @@
   "description": "A command line tool to optimize the repetitive actions.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test test/*.test.js"
   },
   "repository": {
     "type": "git",
