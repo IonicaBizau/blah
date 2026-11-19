@@ -2,38 +2,35 @@
 
 You can see below the API reference of this module.
 
-### `Blah(cwd)` <sup><small><kbd>function</kbd></small></sup>
-
+### `Blah(cwd)`
 Creates a new `Blah` instance.
 
 #### Params
 - **String** `cwd`: The Blah working directory (default: `process.cwd()`).
 
-### `search(file, callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `search(file, callback)`
 Searches a file in the blah directories.
 
 #### Params
-- **String** `file`: The relative path to a file to search in the templates directories (in the following order: local `.blah` directory, `~/.blah-templates`, library templates).
+- **String** `file`: The relative path to a file to search in the templates directories (in the following order: local `.blah` directory,
+`~/.blah-templates`, library templates).
 - **Function** `callback`: The callback function.
 
-### `prepare(callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `prepare(callback)`
 Prepares the Blah data.
 
 #### Params
 - **Function** `callback`: The callback function.
 
-### `init(callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `init(callback)`
 Inits the `.blah` directory in the current project.
 
 #### Params
 - **Function** `callback`: The callback function.
 
-### `docs(input, output, writeToFile, callback)` <sup><small><kbd>function</kbd></small></sup>
-
-Generates the DOCUMENTATION.md file from the input and its local JavaScript imports and requires.
+### `docs(input, output, writeToFile, callback)`
+Generates the DOCUMENTATION.md file from the input and its local
+JavaScript imports and requires.
 
 #### Params
 - **String** `input`: Input file name (default: main file from package.json)
@@ -41,30 +38,26 @@ Generates the DOCUMENTATION.md file from the input and its local JavaScript impo
 - **Boolean** `writeToFile`: If `false`, the docs will be returned via the callback function, without writing the output file.
 - **Function** `callback`: The callback function.
 
-### `readme(callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `readme(callback)`
 Creates the `README.md` file.
 
 #### Params
 - **Function** `callback`: The callback function
 
-### `gitignore(callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `gitignore(callback)`
 Creates the `.gitignore` file.
 
 #### Params
 - **Function** `callback`: The callback function.
 
-### `license(license, callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `license(license, callback)`
 Creates the `LICENSE` file.
 
 #### Params
 - **String** `license`: The license name.
 - **Function** `callback`: The callback function.
 
-### `render(path, data, callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `render(path, data, callback)`
 Renders a template from file.
 
 #### Params
@@ -72,15 +65,13 @@ Renders a template from file.
 - **Object** `data`: Additional data to merge into the template data.
 - **Function** `callback`: The callback function.
 
-### `contributing(callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `contributing(callback)`
 Generates the `CONTRIBUTING.md` file.
 
 #### Params
 - **Function** `callback`: The callback function.
 
-### `version(what, callback)` <sup><small><kbd>function</kbd></small></sup>
-
+### `version(what, callback)`
 Bumps the provided version.
 
 #### Params
