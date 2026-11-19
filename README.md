@@ -158,6 +158,15 @@ blh.license("KINDLY", function (err) {
 
 
 
+## :memo: Documentation
+
+For full API reference, see the [DOCUMENTATION.md][docs] file.
+
+
+
+
+
+
 
 ## :question: Get Help
 
@@ -170,14 +179,6 @@ There are few ways to get help:
  3. For direct and quick help, you can [use Codementor](https://www.codementor.io/johnnyb). :rocket:
 
 
-
-
-
-
-
-## :memo: Documentation
-
-For full API reference, see the [DOCUMENTATION.md][docs] file.
 
 
 
@@ -224,13 +225,6 @@ Thanks! :heart:
 
 
 
-
-
-
-## :dizzy: Where is this library used?
-If you are using this library in one of your projects, add it in this list. :sparkles:
-
- - `ship-release`
 
 
 

@@ -68,6 +68,17 @@ test("search uses user templates between project and bundled templates", async t
         path.join(dir, ".blah", "README.ejs"));
 });
 
+test("init copies bundled templates and preserves existing project templates", async t => {
+    const { dir, blah } = project(t);
+    await call(blah, "init");
+    const readme = path.join(dir, ".blah", "README.ejs");
+    assert.equal(fs.readFileSync(readme, "utf8"),
+        fs.readFileSync(path.join(blah.lib_templates, "README.ejs"), "utf8"));
+    fs.writeFileSync(readme, "custom template");
+    await assert.rejects(call(blah, "init"), /Refusing to override existing templates/);
+    assert.equal(fs.readFileSync(readme, "utf8"), "custom template");
+});
+
 test("render combines project data, caller data, and the Blah instance", async t => {
     const { dir, blah } = project(t);
     const local = path.join(dir, ".blah");
@@ -237,6 +248,40 @@ test("CLI includes Lien properties with an older custom documentation template",
     assert.match(lienOptions, /`\[errorPages=\{\}\]`: Custom error pages/);
 });
 
+test("CLI force generates the same docs as docs and reports generation errors", t => {
+    const { dir } = project(t);
+    const input = path.join(dir, "index.js");
+    fs.writeFileSync(input, [
+        "/**",
+        " * Describes a value over",
+        " * two source lines.",
+        " * @name describe",
+        " * @function",
+        " * @param {String} value A wrapped",
+        " * description.",
+        " */",
+        "function describe(value) {}"
+    ].join("\n"));
+    const cli = path.join(__dirname, "../bin/blah");
+    const env = { ...process.env, HOME: dir };
+    const run = (...args) => spawnSync(process.execPath, [cli, ...args],
+        { cwd: dir, env, encoding: "utf8" });
+
+    const direct = run("-d", "index.js");
+    assert.equal(direct.status, 0, direct.stderr || direct.stdout);
+    const expected = fs.readFileSync(path.join(dir, "DOCUMENTATION.md"), "utf8");
+    const force = run("-f");
+    assert.equal(force.status, 0, force.stderr || force.stdout);
+    assert.equal(fs.readFileSync(path.join(dir, "DOCUMENTATION.md"), "utf8"), expected);
+    assert.match(expected, /Describes a value over two source lines\./);
+    assert.match(expected, /A wrapped description\./);
+
+    fs.rmSync(input);
+    const failed = run("-f");
+    assert.equal(failed.status, 1);
+    assert.match(failed.stderr, /The input file does not exist/);
+});
+
 test("docs still supports legacy Object types and multiline option descriptions", async t => {
     const { blah } = project(t);
     const content = await call(blah, "docs", path.join(__dirname, "jsdocs2.js"), false);
@@ -278,6 +323,14 @@ test("docs joins wrapped prose while preserving paragraphs and list items", asyn
     assert.match(content, /```js\nconst first = 1;\nconst second = 2;\n```/);
     assert.match(content, /The options are wrapped across lines:\n- first: A first option with a wrapped explanation\.\n- second:/);
     assert.match(content, /A return value that continues on the next line\./);
+});
+
+test("docs keeps wrapped descriptions from the library on one Markdown line", async t => {
+    const { blah } = project(t);
+    const content = await call(blah, "docs", path.join(__dirname, "../lib/index.js"), false);
+    assert.match(content, /Generates the DOCUMENTATION\.md file from the input and its local JavaScript imports and requires\./);
+    assert.doesNotMatch(content, /Generates the DOCUMENTATION\.md file from the input and its local\nJavaScript/);
+    assert.match(content, /The relative path to a file to search in the templates directories \(in the following order: local `\.blah` directory, `~\/\.blah-templates`, library templates\)\./);
 });
 
 test("docs keeps complex property types and joins wrapped property descriptions", async t => {
